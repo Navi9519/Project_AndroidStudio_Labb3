@@ -4,6 +4,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface DrinksApi {
-    @GET("/api/json/v1/1/random.php")
+    @GET("api/json/v1/1/random.php")
     fun getDrinks(): Call<Drinks>
 }

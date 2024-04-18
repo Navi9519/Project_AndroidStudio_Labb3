@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.navi9519.labb_3_cocktail_app.ui.composables.TestApi
 import com.navi9519.labb_3_cocktail_app.ui.theme.Labb_3_Cocktail_appTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,25 +23,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    TestApi()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Labb_3_Cocktail_appTheme {
-        Greeting("Android")
-    }
-}

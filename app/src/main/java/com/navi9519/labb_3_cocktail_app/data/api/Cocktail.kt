@@ -1,4 +1,12 @@
 package com.navi9519.labb_3_cocktail_app.data.api
 
-class Cocktail {
+import com.google.gson.annotations.SerializedName
+
+class Cocktail(
+    @SerializedName("strDrinkThumb") val cocktailImg: String,
+    @SerializedName("strDrink") val cocktailName: String,
+    @SerializedName("strCategory") val cocktailCategory: String,
+    @SerializedName("strInstructions") val cocktailInstructions: String
+    ) {
+
 }

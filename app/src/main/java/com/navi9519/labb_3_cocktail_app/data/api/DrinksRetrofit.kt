@@ -34,7 +34,7 @@ object DrinksRetrofit {
                 override fun onResponse(call: Call<Drinks>, response: Response<Drinks>) {
                     if (response.isSuccessful) {
                         val drinks = response.body()
-                        println(drinks?.drinks?.get(0)?.cocktailName)
+
 
                         if (drinks != null) {
                             continuation.resume(drinks)

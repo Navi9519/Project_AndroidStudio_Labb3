@@ -28,16 +28,20 @@
         }
 
         if (drinksObject != null) {
+            val cocktailImg = drinksObject?.drinks?.get(0)?.cocktailImg
+            val cocktailName = drinksObject?.drinks?.get(0)?.cocktailName.toString()
+            val cocktailCategory = drinksObject?.drinks?.get(0)?.cocktailCategory.toString()
+            val cocktailInstructions = drinksObject?.drinks?.get(0)?.cocktailInstructions.toString()
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                Text(text = drinksObject?.drinks?.get(0)?.cocktailName.toString())
-                Text(text = drinksObject?.drinks?.get(0)?.cocktailCategory.toString())
-                Text(text = drinksObject?.drinks?.get(0)?.cocktailInstructions.toString())
+                Text(text = cocktailName)
+                Text(text = cocktailCategory)
+                Text(text = cocktailInstructions)
                 AsyncImage(
-                    model = drinksObject?.drinks?.get(0)?.cocktailImg,
+                    model = cocktailImg,
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier

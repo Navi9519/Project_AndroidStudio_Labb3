@@ -7,6 +7,4 @@ class Cocktail(
     @SerializedName("strDrink") val cocktailName: String,
     @SerializedName("strCategory") val cocktailCategory: String,
     @SerializedName("strInstructions") val cocktailInstructions: String
-    ) {
-
-}
+    )

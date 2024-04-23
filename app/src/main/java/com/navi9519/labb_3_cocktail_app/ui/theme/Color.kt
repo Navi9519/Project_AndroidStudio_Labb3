@@ -10,6 +10,15 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
+// Custom added colors
+val MidnightBlue = Color(0xA107328B)
+val GoldColor = Color(0xFFFFD700)
+val ChampagneGoldColor = Color(0xFFE6B8A2)
+val SlateGrayColor = Color(0xFF708090)
+
+
+
+
 /*
 Primary Color: Slate Gray or Midnight Blue - These colors convey a sense of sophistication and
 professionalism while providing a sleek and modern backdrop for your app's interface.

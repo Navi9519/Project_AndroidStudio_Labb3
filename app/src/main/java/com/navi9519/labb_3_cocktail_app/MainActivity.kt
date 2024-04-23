@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.navi9519.labb_3_cocktail_app.ui.composables.TestApi
+import com.navi9519.labb_3_cocktail_app.ui.composables.screens.LoginScreen
 import com.navi9519.labb_3_cocktail_app.ui.theme.Labb_3_Cocktail_appTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TestApi()
+                    // TestApi()
+                    LoginScreen()
                 }
             }
         }

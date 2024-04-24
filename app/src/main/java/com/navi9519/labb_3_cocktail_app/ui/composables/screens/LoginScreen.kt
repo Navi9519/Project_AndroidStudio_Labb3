@@ -71,14 +71,14 @@ fun LoginScreen() {
             SignInInputField(TextFieldValue("Hej"),
                 { newValue -> hej = newValue.toString() },
                 icon = "person",
-                label = "E-mail",
+                placeholder = "E-mail",
                )
 
             // Password input field logic
             SignInInputField(TextFieldValue("Hej"),
                 { newValue -> hej = newValue.toString() },
                 icon = "lock",
-                label = "Password",
+               placeholder = "Password",
                 visual = PasswordVisualTransformation()
                 )
             Btn("Login") {

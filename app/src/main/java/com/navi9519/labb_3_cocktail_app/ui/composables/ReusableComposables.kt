@@ -2,6 +2,7 @@ package com.navi9519.labb_3_cocktail_app.ui.composables
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,7 +44,7 @@ import com.navi9519.labb_3_cocktail_app.ui.theme.MidnightBlue
 fun Btn(text: String, onclick: () -> Unit) {
     Button(onClick = onclick,
         colors = ButtonDefaults.buttonColors(Color.White),
-        border = BorderStroke(1.dp, Color.White),
+        border = BorderStroke(1.dp, color = GoldColor),
         modifier = Modifier
             .width(250.dp)
             .padding(20.dp)
@@ -82,7 +83,7 @@ fun SignInTitle(title: String) {
                 join = StrokeJoin.Round,
 
             ),
-        )
+        ),
     )
 
 
@@ -94,9 +95,10 @@ fun SignInInputField(
     input: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     icon: String,
-    label: String,
+    placeholder: String,
     visual: PasswordVisualTransformation? = null
 ) {
+
 
 
     return OutlinedTextField(
@@ -116,7 +118,6 @@ fun SignInInputField(
             focusedBorderColor = GoldColor,
             focusedLabelColor = GoldColor,
 
-
             ),
 
         textStyle = TextStyle(
@@ -134,14 +135,19 @@ fun SignInInputField(
         onValueChange = {
             onValueChange(it)
 
-
         },
 
-        label = {
+        placeholder = {
+            Text(
+                placeholder
+            )
+        },
+
+       /* label = {
             Text(
                 label,
             ) },
-
+        */
         visualTransformation = visual ?: VisualTransformation.None
 
 
@@ -151,7 +157,7 @@ fun SignInInputField(
 
 // Get Icon function for input field
 
-private fun getLoginIcon(iconName: String): ImageVector {
+fun getLoginIcon(iconName: String): ImageVector {
     return when (iconName) {
         "person" -> Icons.Default.Person
         "lock" -> Icons.Default.Lock

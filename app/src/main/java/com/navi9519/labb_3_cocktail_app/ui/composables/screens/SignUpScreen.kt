@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,35 +30,38 @@ fun SignUpScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
 
         Image(
-            painter = painterResource(id = R.drawable.signup_background),
+            painter = painterResource(R.drawable.signup_background),
             contentDescription = "Login-background",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
-                .matchParentSize()  
+                .matchParentSize()
 
         )
 
 
         Column(modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             SignInTitle("Sign Up")
+
 
             // Username input field logic
             SignInInputField(
                 TextFieldValue("Hej"),
                 { newValue -> hej = newValue.toString() },
                 icon = "person",
-                label = "Username",
+                placeholder = "Username",
             )
 
             SignInInputField(
                 TextFieldValue("Hej"),
                 { newValue -> hej = newValue.toString() },
                 icon = "email",
-                label = "E-mail",
+               placeholder = "E-mail",
             )
 
             // Password input field logic
@@ -65,7 +69,7 @@ fun SignUpScreen() {
                 TextFieldValue("Hej"),
                 { newValue -> hej = newValue.toString() },
                 icon = "lock",
-                label = "Password",
+               placeholder = "Password",
                 visual = PasswordVisualTransformation()
             )
 
@@ -73,7 +77,7 @@ fun SignUpScreen() {
                 TextFieldValue("Hej"),
                 { newValue -> hej = newValue.toString() },
                 icon = "lock",
-                label = "Confirm Password",
+                placeholder = "Confirm Password",
                 visual = PasswordVisualTransformation()
             )
             Btn("Sign Up") {

@@ -14,12 +14,14 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.StrokeJoin
@@ -32,6 +34,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.LineBreak
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.navi9519.labb_3_cocktail_app.ui.theme.ChampagneGoldColor
@@ -43,8 +48,8 @@ import com.navi9519.labb_3_cocktail_app.ui.theme.MidnightBlue
 @Composable
 fun Btn(text: String, onclick: () -> Unit) {
     Button(onClick = onclick,
-        colors = ButtonDefaults.buttonColors(Color.White),
-        border = BorderStroke(1.dp, color = GoldColor),
+        colors = ButtonDefaults.buttonColors(GoldColor),
+        border = BorderStroke(1.dp, color = Color.White),
         modifier = Modifier
             .width(250.dp)
             .padding(20.dp)
@@ -53,7 +58,7 @@ fun Btn(text: String, onclick: () -> Unit) {
 
         Text(
             text = text,
-            color = GoldColor,
+            color = Color.White,
             fontSize = 20.sp,
             fontStyle = FontStyle.Italic
 
@@ -66,23 +71,26 @@ fun Btn(text: String, onclick: () -> Unit) {
 //// Login/Signup Composables ////
 
 @Composable
-fun SignInTitle(title: String) {
+fun Title(
+    title: String,
+    fontSize: TextUnit,
+    drawstyle: Stroke? = null,
+    shadow: Shadow? = null
+) {
 
-    // TODO - > Fix Styling, fill with gold color and border color black
     Text(
         text = title,
         modifier = Modifier
             .padding(bottom = 80.dp),
         style = TextStyle.Default.copy(
             color = GoldColor,
-            fontSize = 60.sp,
+            fontSize = fontSize,
             fontStyle = FontStyle.Italic,
-            drawStyle = Stroke(
-                miter = 15f,
-                width = 10f,
-                join = StrokeJoin.Round,
-
-            ),
+            textAlign = TextAlign.Center,
+            lineBreak = LineBreak.Paragraph,
+            lineHeight = 70.sp,
+            drawStyle = drawstyle,
+            shadow = shadow
         ),
     )
 
@@ -105,31 +113,33 @@ fun SignInInputField(
         value = input,
         modifier = Modifier
             .padding(vertical = 30.dp)
-            .background(Color.White, RoundedCornerShape(22.dp))
+            .background(color = GoldColor, RoundedCornerShape(22.dp))
         ,
         shape = RoundedCornerShape(22.dp)
         ,
-// TODO - > Fix Styling / Border -> Check Hampus resource
+
+
         colors = OutlinedTextFieldDefaults.colors(
-            unfocusedTextColor = GoldColor,
-            unfocusedBorderColor = GoldColor,
-            unfocusedLabelColor = GoldColor,
-            unfocusedLeadingIconColor = GoldColor,
-            focusedBorderColor = GoldColor,
-            focusedLabelColor = GoldColor,
+            unfocusedTextColor = Color.White,
+            unfocusedBorderColor = Color.White,
+            unfocusedLabelColor = Color.White,
+            unfocusedLeadingIconColor = Color.White,
+            focusedBorderColor = Color.White,
+            focusedLabelColor = Color.White,
 
             ),
 
         textStyle = TextStyle(
-            GoldColor,
+            Color.White,
             fontStyle = FontStyle.Italic,
-            fontSize = 20.sp),
+            fontSize = 20.sp,
+        ),
 
         leadingIcon = {
             Icon(
                 imageVector = getLoginIcon(icon),
                 contentDescription = "$icon Icon",
-                tint = GoldColor
+                tint = Color.White
             ) },
 
         onValueChange = {
@@ -139,20 +149,38 @@ fun SignInInputField(
 
         placeholder = {
             Text(
-                placeholder
+                placeholder,
+                color = Color.White,
             )
         },
 
-       /* label = {
-            Text(
-                label,
-            ) },
-        */
         visualTransformation = visual ?: VisualTransformation.None
 
 
     )
 
+}
+
+
+@Composable
+fun AccountOrNot(text: String) {
+    
+    Text( modifier = Modifier
+        .padding(top = 20.dp),
+        text = text,
+        fontStyle = FontStyle.Italic,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold,
+        style = TextStyle(
+            color = GoldColor,
+            shadow = Shadow(
+                color = Color.Black,
+                offset = Offset(-16f, 16f),
+                blurRadius = 8f
+            )
+        )
+    )
+    
 }
 
 // Get Icon function for input field

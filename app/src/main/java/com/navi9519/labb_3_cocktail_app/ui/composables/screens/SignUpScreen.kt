@@ -10,16 +10,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.navi9519.labb_3_cocktail_app.R
+import com.navi9519.labb_3_cocktail_app.ui.composables.AccountOrNot
 import com.navi9519.labb_3_cocktail_app.ui.composables.Btn
 import com.navi9519.labb_3_cocktail_app.ui.composables.SignInInputField
-import com.navi9519.labb_3_cocktail_app.ui.composables.SignInTitle
+import com.navi9519.labb_3_cocktail_app.ui.composables.Title
 
 @Composable
 @Preview(showBackground = true)
@@ -46,19 +53,34 @@ fun SignUpScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            SignInTitle("Sign Up")
+            Title(
+                "Sign Up",
+
+                60.sp,
+
+                 Stroke(
+                    miter = 10f,
+                    width = 16f,
+                    join = StrokeJoin.Miter
+                ),
+                Shadow(
+                    color = Color.Black,
+                    offset = Offset(-16f, 16f),
+                    blurRadius = 8f
+                )
+            )
 
 
             // Username input field logic
             SignInInputField(
-                TextFieldValue("Hej"),
+                TextFieldValue(),
                 { newValue -> hej = newValue.toString() },
                 icon = "person",
                 placeholder = "Username",
             )
 
             SignInInputField(
-                TextFieldValue("Hej"),
+                TextFieldValue(),
                 { newValue -> hej = newValue.toString() },
                 icon = "email",
                placeholder = "E-mail",
@@ -83,6 +105,10 @@ fun SignUpScreen() {
             Btn("Sign Up") {
 
             }
+
+            AccountOrNot(
+                text = "Allready have a account? Login"
+            )
 
         }
 

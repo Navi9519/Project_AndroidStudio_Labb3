@@ -100,7 +100,7 @@ fun LoginScreen() {
                )
 
             // Password input field logic
-            SignInInputField(TextFieldValue("Hej"),
+            SignInInputField(TextFieldValue(),
                 { newValue -> hej = newValue.toString() },
                 icon = "lock",
                placeholder = "Password",

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,6 +18,9 @@ import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,6 +31,7 @@ import com.navi9519.labb_3_cocktail_app.ui.composables.AccountOrNot
 import com.navi9519.labb_3_cocktail_app.ui.composables.Btn
 import com.navi9519.labb_3_cocktail_app.ui.composables.SignInInputField
 import com.navi9519.labb_3_cocktail_app.ui.composables.Title
+import com.navi9519.labb_3_cocktail_app.ui.theme.GoldColor
 
 @Composable
 @Preview(showBackground = true)
@@ -88,7 +93,7 @@ fun SignUpScreen() {
 
             // Password input field logic
             SignInInputField(
-                TextFieldValue("Hej"),
+                TextFieldValue(),
                 { newValue -> hej = newValue.toString() },
                 icon = "lock",
                placeholder = "Password",
@@ -96,12 +101,15 @@ fun SignUpScreen() {
             )
 
             SignInInputField(
-                TextFieldValue("Hej"),
+                TextFieldValue(),
                 { newValue -> hej = newValue.toString() },
                 icon = "lock",
                 placeholder = "Confirm Password",
                 visual = PasswordVisualTransformation()
             )
+
+
+
             Btn("Sign Up") {
 
             }

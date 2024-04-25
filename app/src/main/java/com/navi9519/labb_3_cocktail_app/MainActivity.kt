@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.navi9519.labb_3_cocktail_app.ui.composables.Test
 import com.navi9519.labb_3_cocktail_app.ui.composables.TestApi
 import com.navi9519.labb_3_cocktail_app.ui.composables.screens.AboutScreen
+import com.navi9519.labb_3_cocktail_app.ui.composables.screens.FindCocktailScreen
 import com.navi9519.labb_3_cocktail_app.ui.composables.screens.HomeScreen
 import com.navi9519.labb_3_cocktail_app.ui.composables.screens.LoginScreen
 import com.navi9519.labb_3_cocktail_app.ui.composables.screens.SignUpScreen
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
                 //SignUpScreen()
                    // HomeScreen()
                     //AboutScreen()
+                    FindCocktailScreen()
                 }
             }
         }

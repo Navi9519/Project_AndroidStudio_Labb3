@@ -1,18 +1,29 @@
 package com.navi9519.labb_3_cocktail_app.ui.composables.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
@@ -27,15 +38,20 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.navi9519.labb_3_cocktail_app.R
+import com.navi9519.labb_3_cocktail_app.ui.composables.Btn
 import com.navi9519.labb_3_cocktail_app.ui.theme.GoldColor
+import com.navi9519.labb_3_cocktail_app.ui.theme.MidnightBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,7 +72,7 @@ fun FindCocktailScreen() {
         Column (
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+            ,
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -71,6 +87,7 @@ fun FindCocktailScreen() {
                 placeholder = {
                     Text(
                         text = "Find Cocktails",
+                        fontWeight = FontWeight.Bold,
                         style = TextStyle(
                             color = GoldColor
                         )
@@ -91,11 +108,11 @@ fun FindCocktailScreen() {
                 tonalElevation = 0.dp
             )
 Text(
-    text = "Top 20 popular cocktails in the World:",
+    text = "Top 10 popular cocktails in the World:",
     modifier = Modifier
-        .padding(top = 100.dp),
+        .padding(top = 45.dp, bottom = 20.dp),
     fontStyle = FontStyle.Italic,
-    fontSize = 20.sp,
+    fontSize = 30.sp,
     fontWeight = FontWeight.Bold,
     style = TextStyle(
         color = GoldColor,
@@ -108,11 +125,92 @@ Text(
     )
 
 )
+            CocktailList()
+
+            Btn(text = "My Cocktails") {
+
+            }
+
+            Btn(text = "Logout/Home") {
+
+            }
 
         }
 
-
     }
 
+}
 
+/// test rendering static cocktails
+
+@Composable
+fun CocktailList() {
+    LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceEvenly,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(420.dp)
+            .padding(horizontal = 40.dp)
+    ) {
+        items(10) { index ->
+            Row (
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                CocktailListItem(cocktailName = "Cocktail ${index + 1}")
+                BtnAddOrRemove("Add to favourite")
+            }
+
+        }
+    }
+}
+
+@Composable
+fun CocktailListItem(cocktailName: String) {
+    // Here you can define the layout for each item in the list
+        Text(
+            modifier = Modifier.
+            clickable {  },
+            text = cocktailName,
+            fontSize = 17.sp,
+            fontWeight = FontWeight.Bold,
+            color = GoldColor,
+            fontFamily = FontFamily.Default,
+            textAlign = TextAlign.Center,
+            textDecoration = TextDecoration.Underline,
+            style = LocalTextStyle.current.copy(
+                shadow =  Shadow(
+                    color = Color.Black,
+                    offset = Offset(-1f, 1f),
+                    blurRadius = 8f
+                )
+            )
+        )
+    }
+
+@Composable
+fun BtnAddOrRemove(text: String) {
+
+    Button(
+        onClick = { /*TODO*/ },
+        colors = ButtonDefaults.buttonColors(GoldColor),
+        border = BorderStroke(1.dp, color = Color.White),
+        modifier = Modifier
+            .size(width = 130.dp, height = 35.dp)
+            .padding(vertical = 1.dp)
+    ) {
+         Text(
+             text = text,
+             fontSize = 10.sp,
+             fontWeight = FontWeight.Bold,
+             maxLines = 1,
+             color = Color.White,
+
+         )
+    }
+    
 }

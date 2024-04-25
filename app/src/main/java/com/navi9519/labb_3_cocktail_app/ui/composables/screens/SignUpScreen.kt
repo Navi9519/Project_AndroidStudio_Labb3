@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -114,9 +115,13 @@ fun SignUpScreen() {
 
             }
 
-            AccountOrNot(
-                text = "Allready have a account? Login"
-            )
+            Row() {
+                AccountOrNot(
+                    text = "Allready have a account? ",
+                    account = " Login"
+                )
+            }
+
 
         }
 

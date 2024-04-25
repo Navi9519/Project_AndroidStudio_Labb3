@@ -2,6 +2,7 @@ package com.navi9519.labb_3_cocktail_app.ui.composables
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -164,11 +165,30 @@ fun SignInInputField(
 
 
 @Composable
-fun AccountOrNot(text: String) {
+fun AccountOrNot(text: String, account: String) {
     
     Text( modifier = Modifier
         .padding(top = 20.dp),
         text = text,
+        fontStyle = FontStyle.Italic,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold,
+        style = TextStyle(
+            color = GoldColor,
+            shadow = Shadow(
+                color = Color.Black,
+                offset = Offset(-16f, 16f),
+                blurRadius = 8f
+            )
+        )
+    )
+
+    Text( modifier = Modifier
+        .padding(top = 20.dp)
+        .clickable {
+
+        },
+        text = account,
         fontStyle = FontStyle.Italic,
         fontSize = 20.sp,
         fontWeight = FontWeight.Bold,

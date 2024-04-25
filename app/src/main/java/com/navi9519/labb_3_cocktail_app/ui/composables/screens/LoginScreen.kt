@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -106,12 +107,18 @@ fun LoginScreen() {
                placeholder = "Password",
                 visual = PasswordVisualTransformation()
                 )
+
             Btn("Login") {
 
                   }
-            AccountOrNot(
-                text = "Don't have an account? Sign up"
-            )
+
+            Row {
+                AccountOrNot(
+                    text = "Don't have an account? ",
+                    account = " Sign up"
+                )
+}
+
         }
 
     }

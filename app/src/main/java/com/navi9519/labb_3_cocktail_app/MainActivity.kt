@@ -9,7 +9,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.navi9519.labb_3_cocktail_app.ui.composables.CocktailCard
 import com.navi9519.labb_3_cocktail_app.ui.composables.Test
 import com.navi9519.labb_3_cocktail_app.ui.composables.TestApi
 import com.navi9519.labb_3_cocktail_app.ui.composables.screens.AboutScreen
@@ -17,6 +19,7 @@ import com.navi9519.labb_3_cocktail_app.ui.composables.screens.FindCocktailScree
 import com.navi9519.labb_3_cocktail_app.ui.composables.screens.HomeScreen
 import com.navi9519.labb_3_cocktail_app.ui.composables.screens.LoginScreen
 import com.navi9519.labb_3_cocktail_app.ui.composables.screens.SignUpScreen
+import com.navi9519.labb_3_cocktail_app.ui.composables.screens.UserCocktailScreen
 import com.navi9519.labb_3_cocktail_app.ui.theme.Labb_3_Cocktail_appTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,10 +35,17 @@ class MainActivity : ComponentActivity() {
                      //Test()
                     // TestApi()
                     // LoginScreen()
-                SignUpScreen()
+                //SignUpScreen()
                    // HomeScreen()
                     //AboutScreen()
-                    //FindCocktailScreen()
+                    FindCocktailScreen()
+                   // UserCocktailScreen()
+                   /* CocktailCard(
+                        onDismissRequest = { /*TODO*/ },
+                        onConfirmation = { /*TODO*/ },
+                        painter = painterResource(id = R.drawable.ic_launcher_background),
+                        imageDescription = "Cocktail"
+                    )  */
                 }
             }
         }

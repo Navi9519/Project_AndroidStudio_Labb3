@@ -65,7 +65,8 @@ fun AboutScreen() {
         ) {
 Title(
     title = "About",
-    fontSize = 70.sp,
+    60.sp,
+
     Stroke(
         miter = 10f,
         width = 16f,

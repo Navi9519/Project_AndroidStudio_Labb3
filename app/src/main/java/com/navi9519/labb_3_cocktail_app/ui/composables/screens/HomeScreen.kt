@@ -61,7 +61,7 @@ fun HomeScreen() {
 
         Btn(
 
-            text = "About Page") {
+            text = "About") {
 
         }
 

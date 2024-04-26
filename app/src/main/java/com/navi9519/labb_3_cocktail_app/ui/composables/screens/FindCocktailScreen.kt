@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.ui.composables.Btn
+import com.navi9519.labb_3_cocktail_app.ui.composables.CocktailList
 import com.navi9519.labb_3_cocktail_app.ui.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.ui.theme.MidnightBlue
 
@@ -125,7 +126,7 @@ Text(
     )
 
 )
-            CocktailList()
+            CocktailList("Add to favorites")
 
             Btn(text = "My Cocktails") {
 
@@ -141,76 +142,3 @@ Text(
 
 }
 
-/// test rendering static cocktails
-
-@Composable
-fun CocktailList() {
-    LazyColumn(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(420.dp)
-            .padding(horizontal = 40.dp)
-    ) {
-        items(10) { index ->
-            Row (
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                CocktailListItem(cocktailName = "Cocktail ${index + 1}")
-                BtnAddOrRemove("Add to favourite")
-            }
-
-        }
-    }
-}
-
-@Composable
-fun CocktailListItem(cocktailName: String) {
-    // Here you can define the layout for each item in the list
-        Text(
-            modifier = Modifier.
-            clickable {  },
-            text = cocktailName,
-            fontSize = 17.sp,
-            fontWeight = FontWeight.Bold,
-            color = GoldColor,
-            fontFamily = FontFamily.Default,
-            textAlign = TextAlign.Center,
-            textDecoration = TextDecoration.Underline,
-            style = LocalTextStyle.current.copy(
-                shadow =  Shadow(
-                    color = Color.Black,
-                    offset = Offset(-1f, 1f),
-                    blurRadius = 8f
-                )
-            )
-        )
-    }
-
-@Composable
-fun BtnAddOrRemove(text: String) {
-
-    Button(
-        onClick = { /*TODO*/ },
-        colors = ButtonDefaults.buttonColors(GoldColor),
-        border = BorderStroke(1.dp, color = Color.White),
-        modifier = Modifier
-            .size(width = 130.dp, height = 35.dp)
-            .padding(vertical = 1.dp)
-    ) {
-         Text(
-             text = text,
-             fontSize = 10.sp,
-             fontWeight = FontWeight.Bold,
-             maxLines = 1,
-             color = Color.White,
-
-         )
-    }
-    
-}

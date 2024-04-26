@@ -45,7 +45,7 @@ fun AboutScreen() {
     ) {
 
         Image(
-            painter = painterResource(id = R.drawable.home_screen_background),
+            painter = painterResource(id = R.drawable.about_background),
             contentDescription = "About-background",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier

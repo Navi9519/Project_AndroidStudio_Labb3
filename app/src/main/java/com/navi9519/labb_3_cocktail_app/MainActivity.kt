@@ -32,10 +32,10 @@ class MainActivity : ComponentActivity() {
                      //Test()
                     // TestApi()
                     // LoginScreen()
-                //SignUpScreen()
+                SignUpScreen()
                    // HomeScreen()
                     //AboutScreen()
-                    FindCocktailScreen()
+                    //FindCocktailScreen()
                 }
             }
         }

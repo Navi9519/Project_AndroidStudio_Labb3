@@ -73,6 +73,7 @@ fun FindCocktailScreen() {
         Column (
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(state = rememberScrollState())
             ,
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally

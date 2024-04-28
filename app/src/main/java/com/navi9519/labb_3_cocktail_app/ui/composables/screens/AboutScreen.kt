@@ -65,7 +65,10 @@ fun AboutScreen() {
         ) {
 Title(
     title = "About",
+
     60.sp,
+
+    null,
 
     Stroke(
         miter = 10f,
@@ -76,7 +79,8 @@ Title(
         color = Color.Black,
         offset = Offset(-16f, 16f),
         blurRadius = 8f
-    )
+    ),
+
 )
 
             Text(

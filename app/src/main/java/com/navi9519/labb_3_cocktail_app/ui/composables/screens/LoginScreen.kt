@@ -81,6 +81,8 @@ fun LoginScreen() {
 
                 60.sp,
 
+                null,
+
                  Stroke(
                     miter = 10f,
                     width = 16f,

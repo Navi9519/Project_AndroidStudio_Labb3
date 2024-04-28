@@ -84,6 +84,7 @@ fun Btn(text: String, onclick: () -> Unit) {
             text = text,
             color = Color.White,
             fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
             fontStyle = FontStyle.Italic
 
             )
@@ -98,6 +99,7 @@ fun Btn(text: String, onclick: () -> Unit) {
 fun Title(
     title: String,
     fontSize: TextUnit,
+    fontWeight: FontWeight? = null,
     drawstyle: Stroke? = null,
     shadow: Shadow? = null
 ) {
@@ -110,6 +112,7 @@ fun Title(
             color = GoldColor,
             fontSize = fontSize,
             fontStyle = FontStyle.Italic,
+            fontWeight = fontWeight,
             textAlign = TextAlign.Center,
             lineBreak = LineBreak.Paragraph,
             lineHeight = 70.sp,
@@ -176,6 +179,7 @@ fun SignInInputField(
             Text(
                 placeholder,
                 color = Color.White,
+                fontWeight = FontWeight.Bold
             )
         },
 

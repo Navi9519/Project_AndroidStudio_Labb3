@@ -3,6 +3,7 @@ package com.navi9519.labb_3_cocktail_app.ui.composables.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +13,7 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
@@ -19,6 +21,7 @@ import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,29 +36,53 @@ import com.navi9519.labb_3_cocktail_app.ui.composables.Title
 fun HomeScreen() {
 
 
+Box(modifier = Modifier.fillMaxSize() )
 
+{
+
+    Image(
+        painter = painterResource(id = R.drawable.homescreen_background),
+        contentDescription = "About-background",
+        contentScale = ContentScale.FillBounds,
+        modifier = Modifier
+            .matchParentSize()
+            .zIndex(-1f)
+            .shadow((-20).dp)
+
+    )
 
     Column(
         modifier = Modifier
-            .padding(top = 10.dp, bottom = 20.dp)
-            .background(color = Color.White)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+            .padding( bottom = 20.dp),
+        verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Image(
-            painter = painterResource(R.drawable.the_cocktail_compas_logo),
+            painter = painterResource(R.drawable.logo_3),
             contentDescription = "Login-background",
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .padding(top = 0.dp, bottom = 10.dp)
-                .height(400.dp)
+                .padding( )
+                .height(350.dp)
+                .shadow(1.dp)
         )
 
         Title(
             title = "Find your favourite Cocktails here!",
-            40.sp
+            40.sp,
+
+            fontWeight = FontWeight.Bold,
+
+           null,
+
+            Shadow(
+                color = Color.Black,
+                offset = Offset(-16f, 16f),
+                blurRadius = 8f
+            ),
+
+
         )
         
 
@@ -69,5 +96,5 @@ fun HomeScreen() {
 
         }
     }
-
+}
 }

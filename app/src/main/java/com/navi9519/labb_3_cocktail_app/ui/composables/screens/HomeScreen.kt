@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,8 +38,11 @@ import com.navi9519.labb_3_cocktail_app.ui.composables.Title
 fun HomeScreen() {
 
 
-Box(modifier = Modifier.fillMaxSize() )
+Box(modifier = Modifier
+    .fillMaxSize()
+    .verticalScroll(state = rememberScrollState())
 
+)
 {
 
     Image(
@@ -53,7 +58,7 @@ Box(modifier = Modifier.fillMaxSize() )
 
     Column(
         modifier = Modifier
-            .padding( bottom = 20.dp),
+            .fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -63,7 +68,6 @@ Box(modifier = Modifier.fillMaxSize() )
             contentDescription = "Login-background",
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .padding( )
                 .height(350.dp)
                 .shadow(1.dp)
         )
@@ -85,16 +89,19 @@ Box(modifier = Modifier.fillMaxSize() )
 
         )
         
+Column (modifier = Modifier
+    .padding(bottom = 20.dp)) {
+    Btn(
 
-        Btn(
+        text = "About") {
 
-            text = "About") {
+    }
 
-        }
+    Btn(text = "Login/Sign up") {
 
-        Btn(text = "Login/Sign up") {
+    }
+}
 
-        }
     }
 }
 }

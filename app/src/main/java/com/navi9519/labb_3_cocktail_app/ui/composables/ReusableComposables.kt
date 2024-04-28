@@ -197,7 +197,7 @@ fun AccountOrNot(text: String, account: String) {
     Text( modifier = Modifier
         .padding(top = 20.dp),
         text = text,
-        fontStyle = FontStyle.Italic,
+        fontStyle = FontStyle.Normal,
         fontSize = 20.sp,
         fontWeight = FontWeight.Bold,
         style = TextStyle(

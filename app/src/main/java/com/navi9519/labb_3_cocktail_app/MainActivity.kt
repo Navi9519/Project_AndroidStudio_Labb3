@@ -34,12 +34,12 @@ class MainActivity : ComponentActivity() {
                 ) {
                      //Test()
                     // TestApi()
-                    // LoginScreen()
-                //SignUpScreen()
-                   // HomeScreen()
+                    //HomeScreen()
                     //AboutScreen()
-                    FindCocktailScreen()
-                   // UserCocktailScreen()
+                    // LoginScreen()
+                    //SignUpScreen()
+                //FindCocktailScreen()
+                UserCocktailScreen()
                    /* CocktailCard(
                         onDismissRequest = { /*TODO*/ },
                         onConfirmation = { /*TODO*/ },

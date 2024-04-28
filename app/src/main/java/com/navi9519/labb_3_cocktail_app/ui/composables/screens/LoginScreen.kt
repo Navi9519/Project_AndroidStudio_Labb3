@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -57,7 +58,9 @@ fun LoginScreen() {
     var hej = "Hej"
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(state = rememberScrollState())
     ) {
 
         Image(
@@ -71,6 +74,7 @@ fun LoginScreen() {
 
         Column(modifier = Modifier
             .fillMaxSize()
+            .padding(top = 40.dp)
             .zIndex(10f),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally

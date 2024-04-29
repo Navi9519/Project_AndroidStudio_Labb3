@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraph
+import com.navi9519.labb_3_cocktail_app.view.composables.screens.NavGraphs
 import com.navi9519.labb_3_cocktail_app.view.composables.screens.UserCocktailScreen
 import com.navi9519.labb_3_cocktail_app.view.theme.Labb_3_Cocktail_appTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +23,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    
+                    DestinationsNavHost(navGraph = NavGraphs.root)
+                    
                      //Test()
                     // TestApi()
                     //HomeScreen()
@@ -27,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     // LoginScreen()
                     //SignUpScreen()
                 //FindCocktailScreen()
-                UserCocktailScreen()
+                //UserCocktailScreen()
                    /* CocktailCard(
                         onDismissRequest = { /*TODO*/ },
                         onConfirmation = { /*TODO*/ },

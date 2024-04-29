@@ -29,10 +29,15 @@ import com.navi9519.labb_3_cocktail_app.view.composables.AccountOrNot
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.SignInInputField
 import com.navi9519.labb_3_cocktail_app.view.composables.Title
+import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.LoginScreenDestination
+import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.SignUpScreenDestination
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
-@Preview(showBackground = true)
-fun SignUpScreen() {
+@Destination
+//@Preview(showBackground = true)
+fun SignUpScreen(navigator: DestinationsNavigator) {
 
     var hej = "Hej"
 
@@ -112,14 +117,17 @@ fun SignUpScreen() {
 
 
             Btn("Sign Up") {
-
+               navigator.navigate(LoginScreenDestination)
             }
 
 
             Row() {
                 AccountOrNot(
                     text = "Allready have a account? ",
-                    account = " Login"
+                    account = " Login",
+                    onClick = {
+                        navigator.navigate(LoginScreenDestination)
+                    }
                 )
             }
 

@@ -26,21 +26,26 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.Title
+import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.AboutScreenDestination
+import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.LoginScreenDestination
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Destination
 @Composable
-@Preview(showBackground = true)
-fun AboutScreen() {
+//@Preview(showBackground = true)
+fun AboutScreen(navigator: DestinationsNavigator) {
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .verticalScroll(state = rememberScrollState())
     ) {
 
@@ -114,7 +119,7 @@ Title(
             )
 
             Btn(text = "Login/Sign up") {
-
+                navigator.navigate(LoginScreenDestination)
             }
 
         }

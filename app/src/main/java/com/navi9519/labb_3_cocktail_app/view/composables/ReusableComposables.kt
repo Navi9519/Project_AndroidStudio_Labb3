@@ -185,7 +185,7 @@ fun SignInInputField(
 
 
 @Composable
-fun AccountOrNot(text: String, account: String) {
+fun AccountOrNot(text: String, account: String, onClick: () -> Unit) {
     
     Text( modifier = Modifier
         .padding(top = 20.dp),
@@ -205,9 +205,7 @@ fun AccountOrNot(text: String, account: String) {
 
     Text( modifier = Modifier
         .padding(top = 20.dp)
-        .clickable {
-
-        },
+        .clickable(onClick = onClick),
         text = account,
         fontStyle = FontStyle.Italic,
         fontSize = 20.sp,

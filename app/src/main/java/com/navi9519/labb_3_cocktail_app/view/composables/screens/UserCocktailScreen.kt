@@ -27,11 +27,17 @@ import androidx.compose.ui.unit.sp
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
+import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.FindCocktailScreenDestination
+import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.HomeScreenDestination
+import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.UserCocktailScreenDestination
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
-@Preview(showBackground = true)
-fun UserCocktailScreen() {
+@Destination
+//@Preview(showBackground = true)
+fun UserCocktailScreen(navigator: DestinationsNavigator) {
 
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -93,11 +99,11 @@ fun UserCocktailScreen() {
             CocktailList("Remove")
 
             Btn(text = "Find cocktails") {
-
+                navigator.navigate(FindCocktailScreenDestination)
             }
 
             Btn(text = "Logout/Home") {
-
+                navigator.navigate(HomeScreenDestination)
             }
 
 

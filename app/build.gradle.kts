@@ -1,6 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("com.android.application" )
+    id("org.jetbrains.kotlin.android" )
+    // Annotation Processor NEW
+    id("com.google.devtools.ksp" )
 }
 
 android {
@@ -40,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
     packaging {
         resources {
@@ -59,6 +61,11 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0" )
 // coil - Image Loader
     implementation ("io.coil-kt:coil-compose:2.6.0" )
+
+    // https://mvnrepository.com/artifact/io.github.raamcosta.compose-destinations/core
+    // Destinations - Navigation dependencies
+    implementation ("io.github.raamcosta.compose-destinations:core:1.10.2" )
+    ksp("io.github.raamcosta.compose-destinations:ksp:1.10.2" )
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")

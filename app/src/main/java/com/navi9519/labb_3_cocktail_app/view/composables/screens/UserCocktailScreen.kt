@@ -1,19 +1,13 @@
-package com.navi9519.labb_3_cocktail_app.ui.composables.screens
+package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Icon
-import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,9 +25,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.navi9519.labb_3_cocktail_app.R
-import com.navi9519.labb_3_cocktail_app.ui.composables.Btn
-import com.navi9519.labb_3_cocktail_app.ui.composables.CocktailList
-import com.navi9519.labb_3_cocktail_app.ui.theme.GoldColor
+import com.navi9519.labb_3_cocktail_app.view.composables.Btn
+import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
+import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 
 @Composable
 @Preview(showBackground = true)

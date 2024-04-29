@@ -1,4 +1,4 @@
-package com.navi9519.labb_3_cocktail_app.ui.theme
+package com.navi9519.labb_3_cocktail_app.view.theme
 
 import android.app.Activity
 import android.os.Build

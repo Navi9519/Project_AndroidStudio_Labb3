@@ -1,4 +1,4 @@
-package com.navi9519.labb_3_cocktail_app.ui.composables.screens
+package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -24,8 +24,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,10 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.navi9519.labb_3_cocktail_app.R
-import com.navi9519.labb_3_cocktail_app.ui.composables.Btn
-import com.navi9519.labb_3_cocktail_app.ui.composables.SignInInputField
-import com.navi9519.labb_3_cocktail_app.ui.composables.Title
-import com.navi9519.labb_3_cocktail_app.ui.theme.GoldColor
+import com.navi9519.labb_3_cocktail_app.view.composables.Btn
+import com.navi9519.labb_3_cocktail_app.view.composables.Title
+import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 
 @Composable
 @Preview(showBackground = true)

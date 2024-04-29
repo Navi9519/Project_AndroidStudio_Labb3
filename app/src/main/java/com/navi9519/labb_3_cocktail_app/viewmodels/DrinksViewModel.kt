@@ -1,11 +1,11 @@
-package com.navi9519.labb_3_cocktail_app.ui.viewmodels
+package com.navi9519.labb_3_cocktail_app.viewmodels
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.navi9519.labb_3_cocktail_app.data.api.Drinks
-import com.navi9519.labb_3_cocktail_app.data.api.DrinksRetrofit
+import com.navi9519.labb_3_cocktail_app.model.api.Drinks
+import com.navi9519.labb_3_cocktail_app.model.api.DrinksRetrofit
 import kotlinx.coroutines.launch
 import java.lang.Exception
 

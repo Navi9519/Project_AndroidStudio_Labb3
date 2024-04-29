@@ -1,7 +1,6 @@
-package com.navi9519.labb_3_cocktail_app.ui.composables
+package com.navi9519.labb_3_cocktail_app.view.composables
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -36,13 +35,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
@@ -61,11 +57,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.navi9519.labb_3_cocktail_app.data.api.Cocktail
-import com.navi9519.labb_3_cocktail_app.ui.theme.ChampagneGoldColor
-import com.navi9519.labb_3_cocktail_app.ui.theme.GoldColor
-import com.navi9519.labb_3_cocktail_app.ui.theme.MidnightBlue
-import com.navi9519.labb_3_cocktail_app.ui.viewmodels.DrinksViewModel
+import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
+import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
 
 
 // Reusable button composable for all screens

@@ -1,4 +1,4 @@
-package com.navi9519.labb_3_cocktail_app.data.api
+package com.navi9519.labb_3_cocktail_app.model.api
 
 import com.google.gson.annotations.SerializedName
 

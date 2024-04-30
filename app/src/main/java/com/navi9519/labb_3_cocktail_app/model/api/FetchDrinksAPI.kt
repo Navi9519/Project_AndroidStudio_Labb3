@@ -4,7 +4,7 @@
     import retrofit2.http.GET
     import retrofit2.http.Query
 
-    interface DrinksApi {
+    interface FetchDrinksAPI {
         @GET("api/json/v1/1/random.php")
-        fun getRandomCocktails(@Query("num") num: Int): Call<Drinks>
+        fun getRandomCocktails(@Query("num") num: Int): Call<DrinksAPI>
     }

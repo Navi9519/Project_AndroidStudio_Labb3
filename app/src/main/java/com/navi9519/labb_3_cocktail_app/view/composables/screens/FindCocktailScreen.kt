@@ -104,7 +104,7 @@ fun FindCocktailScreen(navigator: DestinationsNavigator) {
                 tonalElevation = 0.dp
             )
 Text(
-    text = "Top 10 popular cocktails in the World:",
+    text = "10 random cocktails, reload for new ones:",
     modifier = Modifier
         .padding(top = 45.dp, bottom = 20.dp),
     fontStyle = FontStyle.Italic,

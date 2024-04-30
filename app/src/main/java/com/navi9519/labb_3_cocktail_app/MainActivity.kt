@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph
+import com.navi9519.labb_3_cocktail_app.view.composables.CocktailCard
 import com.navi9519.labb_3_cocktail_app.view.composables.TestApi
 import com.navi9519.labb_3_cocktail_app.view.composables.screens.NavGraphs
 import com.navi9519.labb_3_cocktail_app.view.composables.screens.UserCocktailScreen
@@ -35,12 +36,13 @@ class MainActivity : ComponentActivity() {
                     //SignUpScreen()
                 //FindCocktailScreen()
                 //UserCocktailScreen()
-                   /* CocktailCard(
+                  /*  CocktailCard(
                         onDismissRequest = { /*TODO*/ },
                         onConfirmation = { /*TODO*/ },
-                        painter = painterResource(id = R.drawable.ic_launcher_background),
-                        imageDescription = "Cocktail"
-                    )  */
+
+                    )
+
+                   */
                 }
             }
         }

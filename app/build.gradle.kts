@@ -67,6 +67,16 @@ dependencies {
     implementation ("io.github.raamcosta.compose-destinations:core:1.10.2" )
     ksp("io.github.raamcosta.compose-destinations:ksp:1.10.2" )
 
+    // Room DB
+    implementation("androidx.room:room-runtime:2.6.1")
+    androidTestImplementation("androidx.room:room-testing:2.6.1")
+    implementation ("androidx.room:room-ktx:2.6.1" )
+    // To use Kotlin annotation processing tool (kapt)
+    // ksp("androidx.room:room-compiler:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+    // LifeCycle
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")

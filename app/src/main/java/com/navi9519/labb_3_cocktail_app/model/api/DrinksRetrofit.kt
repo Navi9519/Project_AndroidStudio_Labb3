@@ -23,15 +23,15 @@ object DrinksRetrofit {
     }
 
     private val getDrinksApi by lazy {
-        retrofit.create<DrinksApi>()
+        retrofit.create<FetchDrinksAPI>()
     }
 
-    suspend fun fetchRandomCocktails(num: Int): Drinks {
+    suspend fun fetchRandomCocktails(num: Int): DrinksAPI {
 
         return suspendCoroutine { continuation ->
-            getDrinksApi.getRandomCocktails(num).enqueue(object : Callback<Drinks> {
+            getDrinksApi.getRandomCocktails(num).enqueue(object : Callback<DrinksAPI> {
 
-                override fun onResponse(call: Call<Drinks>, response: Response<Drinks>) {
+                override fun onResponse(call: Call<DrinksAPI>, response: Response<DrinksAPI>) {
                     if (response.isSuccessful) {
                         val drinks = response.body()
 
@@ -43,7 +43,7 @@ object DrinksRetrofit {
                     }
                 }
 
-                override fun onFailure(call: Call<Drinks>, t: Throwable) {
+                override fun onFailure(call: Call<DrinksAPI>, t: Throwable) {
                     println(t.message)
                 }
 

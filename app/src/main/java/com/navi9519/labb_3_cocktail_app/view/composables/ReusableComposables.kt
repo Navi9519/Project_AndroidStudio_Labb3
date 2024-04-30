@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -23,6 +24,7 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
@@ -57,6 +59,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import com.navi9519.labb_3_cocktail_app.model.api.Cocktail
+import com.navi9519.labb_3_cocktail_app.model.api.Drinks
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
 
@@ -239,7 +243,23 @@ fun getLoginIcon(iconName: String): ImageVector {
 /// Components for rendering cocktails
 
 @Composable
-fun CocktailList(text: String) {
+fun CocktailList(
+    viewModel: DrinksViewModel = viewModel(),
+    text: String,
+    )
+{
+
+
+    val drinksList by viewModel.drinksUiState
+
+    // Trigger fetch on initial composition
+    LaunchedEffect(true) {
+        viewModel.fetchRandomCocktails(10)
+    }
+
+    if (drinksList.isNotEmpty()) {
+
+
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -248,21 +268,38 @@ fun CocktailList(text: String) {
             .height(420.dp)
             .padding(horizontal = 40.dp)
     ) {
-        items(10) { index ->
-            Row (
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                CocktailListItem(cocktailName = "Cocktail ${index + 1}")
-                BtnAddOrRemove(text)
-            }
+       items(drinksList) { drink ->
+            drink?.drinks?.forEach { cocktail ->
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    CocktailListItem(cocktailName = cocktail.cocktailName)
+                    BtnAddOrRemove(text)
+                }
 
+            }
+             }
         }
+    } else {
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 10.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            CocktailListItem(cocktailName = "No cocktails")
+            BtnAddOrRemove(text)
+        }
+
     }
-}
+    }
+
+
 
 @Composable
 fun CocktailListItem(cocktailName: String) {
@@ -315,70 +352,34 @@ fun BtnAddOrRemove(text: String) {
 @Composable
 fun CocktailCard(
     viewModel: DrinksViewModel = viewModel(),
+
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
 
     ) {
-    val drinksObject by viewModel.drinksUiState
+    val drinksList by viewModel.drinksUiState
 
     // Trigger fetch on initial composition
     LaunchedEffect(true) {
-        viewModel.fetchDrinks()
+        viewModel.fetchRandomCocktails(10)
     }
 
-    if (drinksObject != null) {
-        val cocktailImg = drinksObject?.drinks?.get(0)?.cocktailImg
-        val cocktailName = drinksObject?.drinks?.get(0)?.cocktailName.toString()
-        val cocktailCategory = drinksObject?.drinks?.get(0)?.cocktailCategory.toString()
-        val cocktailInstructions = drinksObject?.drinks?.get(0)?.cocktailInstructions.toString()
-        Dialog(onDismissRequest = { onDismissRequest() }) {
-            // Draw a rectangle shape with rounded corners inside the dialog
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(375.dp)
-                    .padding(16.dp),
-                shape = RoundedCornerShape(16.dp),
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    AsyncImage(
-                        model = cocktailImg,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
+    if (drinksList.isNotEmpty()) {
+        Column {
+            drinksList.forEach { drinks ->
+                drinks?.drinks?.forEach { cocktail ->
+                    Card(
                         modifier = Modifier
-                            .size(200.dp)
-                            .clip(shape = CircleShape)
-                    )
-                    Text(
-                        text = cocktailName
-                    )
-                    Text(
-                        text = cocktailCategory
-                    )
-                    Text(
-                        text = cocktailInstructions
-                    )
-                    Row(
-                        modifier = Modifier
+                            .padding(16.dp)
                             .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center,
+                        shape = RoundedCornerShape(16.dp),
                     ) {
-                        TextButton(
-                            onClick = { onDismissRequest() },
-                            modifier = Modifier.padding(8.dp),
+                        // Display cocktail details
+                        Column(
+                            modifier = Modifier.padding(16.dp)
                         ) {
-                            Text("Back")
-                        }
-                        TextButton(
-                            onClick = { onConfirmation() },
-                            modifier = Modifier.padding(8.dp),
-                        ) {
-                            Text("Add Drink")
+                            Text(text = cocktail.cocktailName)
+                            // Display other cocktail details as needed
                         }
                     }
                 }
@@ -388,4 +389,3 @@ fun CocktailCard(
         Text(text = "Loading...")
     }
 }
-

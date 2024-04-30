@@ -1,5 +1,5 @@
-package com.navi9519.labb_3_cocktail_app.model.api
+    package com.navi9519.labb_3_cocktail_app.model.api
 
-data class Drinks(
-    val drinks: List<Cocktail>
-)
+    data class Drinks(
+        val drinks: List<Cocktail>
+    )

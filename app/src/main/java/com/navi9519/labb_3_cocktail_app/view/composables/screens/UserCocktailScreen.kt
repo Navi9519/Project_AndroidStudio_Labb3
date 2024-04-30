@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
@@ -31,6 +32,7 @@ import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.Fi
 import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.HomeScreenDestination
 import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.UserCocktailScreenDestination
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
+import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -38,6 +40,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 //@Preview(showBackground = true)
 fun UserCocktailScreen(navigator: DestinationsNavigator) {
+
+    val viewModel: DrinksViewModel = viewModel()
 
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -96,7 +100,7 @@ fun UserCocktailScreen(navigator: DestinationsNavigator) {
                 )
 
             )
-            CocktailList("Remove")
+            CocktailList(viewModel, "Remove")
 
             Btn(text = "Find cocktails") {
                 navigator.navigate(FindCocktailScreenDestination)

@@ -32,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
@@ -39,6 +40,7 @@ import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.Ho
 import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.LoginScreenDestination
 import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.UserCocktailScreenDestination
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
+import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -48,6 +50,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 //@Preview(showBackground = true)
 fun FindCocktailScreen(navigator: DestinationsNavigator) {
+
+    val viewModel: DrinksViewModel = viewModel()
 
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -117,7 +121,7 @@ Text(
     )
 
 )
-            CocktailList("Add to favorites")
+            CocktailList(viewModel,"Add to favorites")
 
             Btn(text = "My Cocktails") {
 

@@ -11,13 +11,18 @@ import java.lang.Exception
 
 class DrinksViewModel: ViewModel() {
 
-    private val _drinksUiState = mutableStateOf<Drinks?>( null)
-    var drinksUiState : State<Drinks?> = _drinksUiState
+    private val _drinksUiState = mutableStateOf<List<Drinks?>>(emptyList())
+    var drinksUiState : State<List<Drinks?>> = _drinksUiState
 
-    fun fetchDrinks () {
+    fun fetchRandomCocktails (num: Int) {
         viewModelScope.launch {
             try {
-                _drinksUiState.value = DrinksRetrofit.fetchDrinks()
+                val drinksList = mutableListOf<Drinks>()
+                repeat(num) {
+                    val drinks = DrinksRetrofit.fetchRandomCocktails(1)
+                    drinksList.add(drinks)
+                }
+                _drinksUiState.value = drinksList
             } catch (e: Exception) {
                 e.printStackTrace()
             }

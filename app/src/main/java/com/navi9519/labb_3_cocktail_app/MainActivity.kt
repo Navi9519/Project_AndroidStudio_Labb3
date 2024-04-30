@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph
+import com.navi9519.labb_3_cocktail_app.view.composables.TestApi
 import com.navi9519.labb_3_cocktail_app.view.composables.screens.NavGraphs
 import com.navi9519.labb_3_cocktail_app.view.composables.screens.UserCocktailScreen
 import com.navi9519.labb_3_cocktail_app.view.theme.Labb_3_Cocktail_appTheme
@@ -24,10 +25,10 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     
-                    DestinationsNavHost(navGraph = NavGraphs.root)
+                   DestinationsNavHost(navGraph = NavGraphs.root)
                     
                      //Test()
-                    // TestApi()
+                     //TestApi()
                     //HomeScreen()
                     //AboutScreen()
                     // LoginScreen()

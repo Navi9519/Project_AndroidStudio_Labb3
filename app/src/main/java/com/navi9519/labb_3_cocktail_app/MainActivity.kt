@@ -34,7 +34,7 @@
                         color = MaterialTheme.colorScheme.background
                     ) {
 
-                        MyApp()
+                        MyApp(userRepository)
 
                     }
                 }

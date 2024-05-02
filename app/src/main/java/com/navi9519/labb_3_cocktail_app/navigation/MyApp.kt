@@ -16,7 +16,7 @@ import com.navi9519.labb_3_cocktail_app.view.composables.screens.UserCocktailScr
 
 
 @Composable
-fun MyApp() {
+fun MyApp(userRepository: UserRepository) {
 
     val navController = rememberNavController()
 
@@ -27,7 +27,7 @@ fun MyApp() {
         composable("HomeScreen") { HomeScreen(navController) }
         composable("AboutScreen") { AboutScreen(navController) }
         composable("LoginScreen") { LoginScreen(navController) }
-        composable("SignUpScreen") { SignUpScreen(navController) }
+        composable("SignUpScreen") { SignUpScreen(navController, userRepository) }
         composable("FindCocktailScreen") { FindCocktailScreen(navController) }
         composable("UserCocktailScreen") { UserCocktailScreen(navController) }
 

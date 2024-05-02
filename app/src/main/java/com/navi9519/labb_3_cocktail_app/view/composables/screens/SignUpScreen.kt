@@ -39,24 +39,63 @@ import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.SignInInputField
 import com.navi9519.labb_3_cocktail_app.view.composables.Title
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 
 
 @Composable
 //@Preview(showBackground = true)
 fun SignUpScreen(
     navController: NavController,
+    userRepository: UserRepository
 
 ) {
 
-    // Mutable textField states for username and password
-    val usernameState = remember { mutableStateOf(TextFieldValue("")) }
+
+// Mutable textField states for username, email, and password
     val emailState = remember { mutableStateOf(TextFieldValue("")) }
-    val passwordState= remember { mutableStateOf(TextFieldValue("")) }
+    val usernameState = remember { mutableStateOf(TextFieldValue("")) }
+    val passwordState = remember { mutableStateOf(TextFieldValue("")) }
+
+    // Function to add user to the database and print all users
+
+    fun addUserAndPrintUsers() {
+        // Get the values from the text field states
+        val email = emailState.value.text
+        val username = usernameState.value.text
+        val password = passwordState.value.text
+
+        // Check if the username, email, and password are valid
+        if (username.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+
+            // Add the user to the database
+            userRepository.performDatabaseOperation(Dispatchers.IO) {
+                val newUser = User(email, username, password)
+                userRepository.insertOrUpdateUser(newUser)
+            }
 
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .verticalScroll(state = rememberScrollState())
+            // Print all users
+            userRepository.performDatabaseOperation(Dispatchers.Main) {
+                userRepository.findAllUsers().collect { users ->
+                    println("All users:")
+                    users.forEach {
+                        println("${it.name} - ${it.email}")
+                    }
+                    userRepository.findAllUsers().collect{
+                        println(it)
+                    }
+                }
+                }
+            navController.navigate("LoginScreen")
+
+        }
+    }
+
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(state = rememberScrollState())
     ) {
 
         Image(
@@ -69,9 +108,10 @@ fun SignUpScreen(
         )
 
 
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 40.dp,),
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 40.dp,),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -96,6 +136,14 @@ fun SignUpScreen(
             )
 
 
+            // Email input field logic
+            SignInInputField(
+                emailState.value,
+                { newValue -> emailState.value = newValue },
+                icon = "email",
+                placeholder = "E-mail",
+            )
+
             // Username input field logic
             SignInInputField(
                 usernameState.value,
@@ -104,13 +152,6 @@ fun SignUpScreen(
                 placeholder = "Username",
             )
 
-            // Email input field logic
-            SignInInputField(
-                emailState.value,
-                { newValue -> emailState.value = newValue },
-                icon = "email",
-                placeholder = "E-mail",
-            )
 
             // Password input field logic
             SignInInputField(
@@ -132,38 +173,21 @@ fun SignUpScreen(
 
             Btn("Sign Up") {
 
-                // Setting more easy readable variables for state changes
-                val username = usernameState.value.text
-                val email = emailState.value.text
-                val password = passwordState.value.text
-
-
-                if (username.length >= 2 && email.length >= 10 && password.length >= 6) {
-
-                    // Check if the username already exists i users(list)
-
-                    // Add new User object
-                    val newUser = User(email, username, password)
-
-                    // Update the userDatabase state, with the new user
-                    
-
+                addUserAndPrintUsers()
+            }
+                Row() {
+                    AccountOrNot(
+                        text = "Allready have a account? ",
+                        account = " Login",
+                        onClick = {
+                            navController.navigate("LoginScreen")
+                        }
+                    )
                 }
-            }
 
-            Row() {
-                AccountOrNot(
-                    text = "Allready have a account? ",
-                    account = " Login",
-                    onClick = {
-                        navController.navigate("LoginScreen")
-                    }
-                )
-            }
 
+            }
 
         }
 
     }
-
-}

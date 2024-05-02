@@ -70,7 +70,7 @@ fun SignUpScreen(
         val password = passwordState.value.text
 
         // Check if the username, email, and password are valid
-        if (username.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+        if(username.length >= 2 && email.endsWith(".com") && password.length >= 6 ) {
 
             viewModel.register(username) { usernameIsRegistered ->
                 if (!usernameIsRegistered) {
@@ -102,6 +102,9 @@ fun SignUpScreen(
                 }
 
 
+            } else {
+            Toast.makeText(context, "valid name(min 2 chars), valid email '.com' valid password(min 6 chars)",
+                Toast.LENGTH_LONG).show()
             }
         }
 

@@ -79,7 +79,7 @@ fun SignUpScreen(
                         val newUser = User(email, username, password)
                         userRepository.insertOrUpdateUser(newUser)
                     }
-                    navController.navigate("LoginScreen")
+
 
                 } else {
                     Toast.makeText(context, "username ''$username'' already exists",

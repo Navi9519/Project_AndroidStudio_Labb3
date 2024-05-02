@@ -110,7 +110,7 @@ fun LoginScreen(
 
                 viewModel.login(username, password) { isUserLoggedIn ->
                     if (isUserLoggedIn) {
-                        navController.navigate("FindCocktailScreen")
+                        navController.navigate("FindCocktailScreen/$username")
                     } else {
                         println("Invalid username or password")
                     }

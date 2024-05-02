@@ -47,7 +47,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 //@Preview(showBackground = true)
 fun FindCocktailScreen(
-    navController: NavController
+    navController: NavController,
+    username: String?
 ) {
 
     val viewModel: DrinksViewModel = viewModel()
@@ -103,12 +104,13 @@ fun FindCocktailScreen(
                 tonalElevation = 0.dp
             )
 Text(
-    text = "10 random cocktails, reload for new ones:",
+    text = "Hello, $username, 10 random Cocktails for you:",
     modifier = Modifier
         .padding(top = 45.dp, bottom = 20.dp),
     fontStyle = FontStyle.Italic,
     fontSize = 30.sp,
     fontWeight = FontWeight.Bold,
+    maxLines = 3,
     style = TextStyle(
         color = GoldColor,
         textAlign = TextAlign.Center,

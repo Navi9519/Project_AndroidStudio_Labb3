@@ -23,22 +23,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.Title
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.AboutScreenDestination
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.LoginScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 
 
-@RootNavGraph(start = true)
-@Destination
+
 @Composable
 //@Preview(showBackground = true)
-fun HomeScreen(navigator: DestinationsNavigator) {
+fun HomeScreen(
+    navController: NavController
+) {
 
 
 Box(modifier = Modifier
@@ -95,11 +96,13 @@ Box(modifier = Modifier
 Column (modifier = Modifier
     .padding(bottom = 20.dp)) {
     Btn(text = "About") {
-        navigator.navigate(AboutScreenDestination)
+        navController.navigate("AboutScreen")
+
     }
 
     Btn(text = "Login/Sign up") {
-       navigator.navigate(LoginScreenDestination)
+        navController.navigate("LoginScreen")
+
     }
 }
 

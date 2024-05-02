@@ -25,21 +25,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.FindCocktailScreenDestination
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.HomeScreenDestination
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.UserCocktailScreenDestination
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
-@Destination
 //@Preview(showBackground = true)
-fun UserCocktailScreen(navigator: DestinationsNavigator) {
+fun UserCocktailScreen(
+    navController: NavController
+) {
 
     val viewModel: DrinksViewModel = viewModel()
 
@@ -103,11 +102,12 @@ fun UserCocktailScreen(navigator: DestinationsNavigator) {
             CocktailList(viewModel, "Remove")
 
             Btn(text = "Find cocktails") {
-                navigator.navigate(FindCocktailScreenDestination)
+                navController.navigate("FindCocktailScreen")
+
             }
 
             Btn(text = "Logout/Home") {
-                navigator.navigate(HomeScreenDestination)
+                navController.navigate("HomeScreen")
             }
 
 

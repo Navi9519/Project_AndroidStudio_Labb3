@@ -24,22 +24,20 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.navigation.NavController
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.view.composables.AccountOrNot
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.SignInInputField
 import com.navi9519.labb_3_cocktail_app.view.composables.Title
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.AboutScreenDestination
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.FindCocktailScreenDestination
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.LoginScreenDestination
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.SignUpScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
-@Destination
 //@Preview(showBackground = true)
-fun LoginScreen(navigator: DestinationsNavigator) {
+fun LoginScreen(
+    navController: NavController
+) {
 
     var hej = "Hej"
 
@@ -101,7 +99,7 @@ fun LoginScreen(navigator: DestinationsNavigator) {
                 )
 
             Btn("Login") {
-                navigator.navigate(FindCocktailScreenDestination)
+                navController.navigate("FindCocktailScreen")
                   }
 
             Row {
@@ -109,7 +107,7 @@ fun LoginScreen(navigator: DestinationsNavigator) {
                     text = "Don't have an account? ",
                     account = " Sign up",
                     onClick = {
-                        navigator.navigate(SignUpScreenDestination)
+                        navController.navigate("SignUpScreen")
                     }
                 )
 }

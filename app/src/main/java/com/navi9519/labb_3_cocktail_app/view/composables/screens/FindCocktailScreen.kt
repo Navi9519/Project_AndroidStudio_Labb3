@@ -33,12 +33,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.HomeScreenDestination
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.LoginScreenDestination
-import com.navi9519.labb_3_cocktail_app.view.composables.screens.destinations.UserCocktailScreenDestination
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -46,10 +44,11 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination
 @Composable
 //@Preview(showBackground = true)
-fun FindCocktailScreen(navigator: DestinationsNavigator) {
+fun FindCocktailScreen(
+    navController: NavController
+) {
 
     val viewModel: DrinksViewModel = viewModel()
 
@@ -125,12 +124,14 @@ Text(
 
             Btn(text = "My Cocktails") {
 
-                navigator.navigate(UserCocktailScreenDestination)
+                navController.navigate("UserCocktailScreen")
 
             }
 
             Btn(text = "Logout/Home") {
-                navigator.navigate(HomeScreenDestination)
+
+                navController.navigate("HomeScreen")
+
             }
 
         }

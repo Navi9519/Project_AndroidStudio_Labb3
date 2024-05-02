@@ -30,6 +30,11 @@ class UserRepository (
 
     }
 
+    fun findExistingUser(username: String): Flow<User?> {
+        return myDatabase.userDao().findExistingUser(username)
+
+    }
+
         // Handle Thread Operations
         fun performDatabaseOperation(dispatcher: CoroutineDispatcher, databaseOperation: suspend () -> Unit) {
             coroutineScope.launch(dispatcher) {

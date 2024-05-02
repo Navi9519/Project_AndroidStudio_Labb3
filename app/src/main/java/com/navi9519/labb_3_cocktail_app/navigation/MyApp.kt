@@ -2,8 +2,6 @@ package com.navi9519.labb_3_cocktail_app.navigation
 
 import UserExistViewModel
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -19,11 +17,9 @@ import com.navi9519.labb_3_cocktail_app.view.composables.screens.UserCocktailScr
 @Composable
 fun MyApp(
     userRepository: UserRepository,
-    userExistViewModel: UserExistViewModel
+    userExistViewModel: UserExistViewModel,
 ) {
-
     val navController = rememberNavController()
-
 
     // TODO - NavGraph + Multiple Destinations
 
@@ -31,7 +27,7 @@ fun MyApp(
         composable("HomeScreen") { HomeScreen(navController) }
         composable("AboutScreen") { AboutScreen(navController) }
         composable("LoginScreen") { LoginScreen(navController, userExistViewModel) }
-        composable("SignUpScreen") { SignUpScreen(navController, userRepository) }
+        composable("SignUpScreen") { SignUpScreen(navController, userRepository, userExistViewModel) }
         composable("FindCocktailScreen/{username}") {backStackEntry ->  FindCocktailScreen(
             navController,
             username = backStackEntry.arguments?.getString("username")
@@ -39,7 +35,13 @@ fun MyApp(
 
         }
 
-        composable("UserCocktailScreen") { UserCocktailScreen(navController) }
+        composable("UserCocktailScreen/{username}") {backStackEntry ->  UserCocktailScreen(
+            navController,
+            username = backStackEntry.arguments?.getString("username")
+        )
+
+        }
+
 
     }
 

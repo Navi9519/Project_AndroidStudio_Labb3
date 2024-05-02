@@ -14,4 +14,13 @@ class UserExistViewModel(private val userRepository: UserRepository) : ViewModel
             }
             .launchIn(viewModelScope)
     }
+
+    fun register(username: String, onRegisterResult: (Boolean) -> Unit) {
+        userRepository.findExistingUser(username)
+            .onEach { user ->
+                val usernamesIsRegistered = user != null
+                onRegisterResult(usernamesIsRegistered)
+            }
+            .launchIn(viewModelScope)
+    }
 }

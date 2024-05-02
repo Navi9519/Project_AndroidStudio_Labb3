@@ -37,7 +37,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 //@Preview(showBackground = true)
 fun UserCocktailScreen(
-    navController: NavController
+    navController: NavController,
+    username: String?
 ) {
 
     val viewModel: DrinksViewModel = viewModel()
@@ -63,7 +64,7 @@ fun UserCocktailScreen(
         ) {
 
             Text(
-                text = "Hello UserName",
+                text = "Hello $username",
                 modifier = Modifier
                     .padding(top = 45.dp, bottom = 20.dp),
                 fontStyle = FontStyle.Italic,

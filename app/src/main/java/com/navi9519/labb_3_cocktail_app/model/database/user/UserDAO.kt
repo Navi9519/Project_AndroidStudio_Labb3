@@ -22,4 +22,7 @@ interface UserDAO {
     @Query("SELECT * FROM users WHERE name = :username AND password = :password LIMIT 1")
     fun findUserByUsernameAndPassword(username: String, password: String): Flow<User?>
 
+    @Query("SELECT * FROM users WHERE name = :username")
+    fun findExistingUser(username: String): Flow<User?>
+
 }

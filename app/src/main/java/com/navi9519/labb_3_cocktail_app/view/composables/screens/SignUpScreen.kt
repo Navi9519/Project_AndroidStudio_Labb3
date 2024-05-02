@@ -1,5 +1,7 @@
 package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
+import UserExistViewModel
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +22,7 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
@@ -46,10 +49,12 @@ import kotlinx.coroutines.flow.collect
 //@Preview(showBackground = true)
 fun SignUpScreen(
     navController: NavController,
-    userRepository: UserRepository
+    userRepository: UserRepository,
+    viewModel: UserExistViewModel
 
 ) {
 
+    val context = LocalContext.current
 
 // Mutable textField states for username, email, and password
     val emailState = remember { mutableStateOf(TextFieldValue("")) }
@@ -67,114 +72,123 @@ fun SignUpScreen(
         // Check if the username, email, and password are valid
         if (username.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
 
-            // Add the user to the database
-            userRepository.performDatabaseOperation(Dispatchers.IO) {
-                val newUser = User(email, username, password)
-                userRepository.insertOrUpdateUser(newUser)
+            viewModel.register(username) { usernameIsRegistered ->
+                if (!usernameIsRegistered) {
+                    // Add the user to the database
+                    userRepository.performDatabaseOperation(Dispatchers.IO) {
+                        val newUser = User(email, username, password)
+                        userRepository.insertOrUpdateUser(newUser)
+                    }
+                    navController.navigate("LoginScreen")
+
+                } else {
+                    Toast.makeText(context, "username ''$username'' already exists",
+                        Toast.LENGTH_LONG).show()
+
+                }
+
             }
-
-
-            // Print all users
-            userRepository.performDatabaseOperation(Dispatchers.Main) {
-                userRepository.findAllUsers().collect { users ->
-                    println("All users:")
-                    users.forEach {
-                        println("${it.email} - ${it.name} - ${it.password} ${it.id} ")
-                    }
-                    userRepository.findAllUsers().collect{
-                        println(it)
+                // Print all users
+                userRepository.performDatabaseOperation(Dispatchers.Main) {
+                    userRepository.findAllUsers().collect { users ->
+                        println("All users:")
+                        users.forEach {
+                            println("${it.email} - ${it.name} - ${it.password} ${it.id} ")
+                        }
+                        userRepository.findAllUsers().collect {
+                            println(it)
+                        }
                     }
                 }
-                }
-            navController.navigate("LoginScreen")
 
+
+            }
         }
-    }
 
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(state = rememberScrollState())
-    ) {
-
-        Image(
-            painter = painterResource(R.drawable.signup_background),
-            contentDescription = "Login-background",
-            contentScale = ContentScale.FillBounds,
-            modifier = Modifier
-                .matchParentSize()
-
-        )
-
-
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 40.dp,),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .verticalScroll(state = rememberScrollState())
         ) {
 
-            Title(
-                "Sign Up",
+            Image(
+                painter = painterResource(R.drawable.signup_background),
+                contentDescription = "Login-background",
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier
+                    .matchParentSize()
 
-                60.sp,
+            )
 
-                null,
 
-                Stroke(
-                    miter = 10f,
-                    width = 16f,
-                    join = StrokeJoin.Miter
-                ),
-                Shadow(
-                    color = Color.Black,
-                    offset = Offset(-16f, 16f),
-                    blurRadius = 8f
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 40.dp,),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+                Title(
+                    "Sign Up",
+
+                    60.sp,
+
+                    null,
+
+                    Stroke(
+                        miter = 10f,
+                        width = 16f,
+                        join = StrokeJoin.Miter
+                    ),
+                    Shadow(
+                        color = Color.Black,
+                        offset = Offset(-16f, 16f),
+                        blurRadius = 8f
+                    )
                 )
-            )
 
 
-            // Email input field logic
-            SignInInputField(
-                emailState.value,
-                { newValue -> emailState.value = newValue },
-                icon = "email",
-                placeholder = "E-mail",
-            )
+                // Email input field logic
+                SignInInputField(
+                    emailState.value,
+                    { newValue -> emailState.value = newValue },
+                    icon = "email",
+                    placeholder = "E-mail",
+                )
 
-            // Username input field logic
-            SignInInputField(
-                usernameState.value,
-                { newValue -> usernameState.value = newValue },
-                icon = "person",
-                placeholder = "Username",
-            )
-
-
-            // Password input field logic
-            SignInInputField(
-                passwordState.value,
-                { newValue -> passwordState.value = newValue },
-                icon = "lock",
-                placeholder = "Password",
-                visual = PasswordVisualTransformation()
-            )
-
-            SignInInputField(
-                passwordState.value,
-                { newValue -> passwordState.value = newValue },
-                icon = "lock",
-                placeholder = "Confirm Password",
-                visual = PasswordVisualTransformation()
-            )
+                // Username input field logic
+                SignInInputField(
+                    usernameState.value,
+                    { newValue -> usernameState.value = newValue },
+                    icon = "person",
+                    placeholder = "Username",
+                )
 
 
-            Btn("Sign Up") {
+                // Password input field logic
+                SignInInputField(
+                    passwordState.value,
+                    { newValue -> passwordState.value = newValue },
+                    icon = "lock",
+                    placeholder = "Password",
+                    visual = PasswordVisualTransformation()
+                )
 
-                addUserAndPrintUsers()
-            }
+                SignInInputField(
+                    passwordState.value,
+                    { newValue -> passwordState.value = newValue },
+                    icon = "lock",
+                    placeholder = "Confirm Password",
+                    visual = PasswordVisualTransformation()
+                )
+
+
+                Btn("Sign Up") {
+
+                    addUserAndPrintUsers()
+                }
                 Row() {
                     AccountOrNot(
                         text = "Allready have a account? ",

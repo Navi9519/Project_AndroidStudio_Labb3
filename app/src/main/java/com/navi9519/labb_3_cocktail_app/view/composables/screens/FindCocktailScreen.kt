@@ -126,7 +126,7 @@ Text(
 
             Btn(text = "My Cocktails") {
 
-                navController.navigate("UserCocktailScreen")
+                navController.navigate("UserCocktailScreen/$username")
 
             }
 

@@ -1,5 +1,6 @@
 package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
+import UserExistViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -26,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import com.navi9519.labb_3_cocktail_app.R
+import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
 import com.navi9519.labb_3_cocktail_app.view.composables.AccountOrNot
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.SignInInputField
@@ -36,10 +40,12 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 //@Preview(showBackground = true)
 fun LoginScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: UserExistViewModel,
 ) {
 
-    var hej = "Hej"
+    val usernameState = remember { mutableStateOf(TextFieldValue("")) }
+    val passwordState = remember { mutableStateOf(TextFieldValue("")) }
 
     Box(
         modifier = Modifier
@@ -84,23 +90,32 @@ fun LoginScreen(
             )
 
             // Username input field logic
-            SignInInputField(TextFieldValue("",),
-                { newValue -> hej = newValue.toString() },
+            SignInInputField(usernameState.value,
+                { newValue -> usernameState.value = newValue },
                 icon = "person",
-                placeholder = "E-mail",
+                placeholder = "Username",
                )
 
             // Password input field logic
-            SignInInputField(TextFieldValue(),
-                { newValue -> hej = newValue.toString() },
+            SignInInputField(passwordState.value,
+                { newValue -> passwordState.value = newValue},
                 icon = "lock",
                placeholder = "Password",
                 visual = PasswordVisualTransformation()
                 )
 
             Btn("Login") {
-                navController.navigate("FindCocktailScreen")
-                  }
+                val username = usernameState.value.text
+                val password = passwordState.value.text
+
+                viewModel.login(username, password) { isUserLoggedIn ->
+                    if (isUserLoggedIn) {
+                        navController.navigate("FindCocktailScreen")
+                    } else {
+                        println("Invalid username or password")
+                    }
+                }
+            }
 
             Row {
                 AccountOrNot(

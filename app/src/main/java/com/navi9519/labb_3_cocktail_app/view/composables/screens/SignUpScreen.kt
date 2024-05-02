@@ -79,7 +79,7 @@ fun SignUpScreen(
                 userRepository.findAllUsers().collect { users ->
                     println("All users:")
                     users.forEach {
-                        println("${it.name} - ${it.email}")
+                        println("${it.email} - ${it.name} - ${it.password} ${it.id} ")
                     }
                     userRepository.findAllUsers().collect{
                         println(it)

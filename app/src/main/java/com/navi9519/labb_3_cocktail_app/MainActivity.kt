@@ -1,5 +1,6 @@
     package com.navi9519.labb_3_cocktail_app
 
+    import UserExistViewModel
     import android.os.Bundle
     import androidx.activity.ComponentActivity
     import androidx.activity.compose.setContent
@@ -26,6 +27,8 @@
             //db.openHelper.writableDatabase // Ensure the database is initialized
             val userRepository = UserRepository(db, lifecycleScope)
 
+            val userExistViewModel = UserExistViewModel(userRepository)
+
             setContent {
                 Labb_3_Cocktail_appTheme {
                     // A surface container using the 'background' color from the theme
@@ -34,7 +37,7 @@
                         color = MaterialTheme.colorScheme.background
                     ) {
 
-                        MyApp(userRepository)
+                        MyApp(userRepository, userExistViewModel)
 
                     }
                 }

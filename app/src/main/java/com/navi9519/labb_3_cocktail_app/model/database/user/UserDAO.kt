@@ -19,4 +19,7 @@ interface UserDAO {
     @Query("SELECT * FROM users")
     fun findAllUsers(): Flow<List<User>>
 
+    @Query("SELECT * FROM users WHERE name = :username AND password = :password LIMIT 1")
+    fun findUserByUsernameAndPassword(username: String, password: String): Flow<User?>
+
 }

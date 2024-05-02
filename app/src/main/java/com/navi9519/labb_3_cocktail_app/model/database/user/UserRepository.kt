@@ -25,6 +25,11 @@ class UserRepository (
             return myDatabase.userDao().findAllUsers()
         }
 
+    fun findUserByUsernameAndPassword(username: String, password: String): Flow<User?> {
+        return myDatabase.userDao().findUserByUsernameAndPassword(username, password)
+
+    }
+
         // Handle Thread Operations
         fun performDatabaseOperation(dispatcher: CoroutineDispatcher, databaseOperation: suspend () -> Unit) {
             coroutineScope.launch(dispatcher) {

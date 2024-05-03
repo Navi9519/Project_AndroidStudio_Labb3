@@ -31,8 +31,7 @@ import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+
 
 @Composable
 //@Preview(showBackground = true)

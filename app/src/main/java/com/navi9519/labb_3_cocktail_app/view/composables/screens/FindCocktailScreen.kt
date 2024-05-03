@@ -1,5 +1,6 @@
 package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
+import UserExistViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -39,8 +40,7 @@ import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,7 +48,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 //@Preview(showBackground = true)
 fun FindCocktailScreen(
     navController: NavController,
-    username: String?
+    userViewModel: UserExistViewModel
 ) {
 
     val viewModel: DrinksViewModel = viewModel()
@@ -104,7 +104,7 @@ fun FindCocktailScreen(
                 tonalElevation = 0.dp
             )
 Text(
-    text = "Hello, $username, 10 random Cocktails for you:",
+    text = "Hello, ${userViewModel.username.value}, 10 random Cocktails for you:",
     modifier = Modifier
         .padding(top = 45.dp, bottom = 20.dp),
     fontStyle = FontStyle.Italic,
@@ -126,11 +126,12 @@ Text(
 
             Btn(text = "My Cocktails") {
 
-                navController.navigate("UserCocktailScreen/$username")
+                navController.navigate("UserCocktailScreen/${userViewModel.username}")
 
             }
 
             Btn(text = "Logout/Home") {
+
 
                 navController.navigate("HomeScreen")
 

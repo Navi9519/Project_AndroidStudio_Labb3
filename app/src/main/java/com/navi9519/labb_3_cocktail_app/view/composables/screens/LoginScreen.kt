@@ -34,8 +34,7 @@ import com.navi9519.labb_3_cocktail_app.view.composables.AccountOrNot
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.SignInInputField
 import com.navi9519.labb_3_cocktail_app.view.composables.Title
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+
 
 @Composable
 //@Preview(showBackground = true)
@@ -110,7 +109,8 @@ fun LoginScreen(
 
                 viewModel.login(username, password) { isUserLoggedIn ->
                     if (isUserLoggedIn) {
-                        navController.navigate("FindCocktailScreen/$username")
+                        viewModel.username.value = username
+                        navController.navigate("FindCocktailScreen")
                     } else {
                         println("Invalid username or password")
                     }

@@ -1,3 +1,4 @@
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
@@ -5,6 +6,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class UserExistViewModel(private val userRepository: UserRepository) : ViewModel() {
+
+    var username = mutableStateOf("")
 
     fun login(username: String, password: String, onLoginResult: (Boolean) -> Unit) {
         userRepository.findUserByUsernameAndPassword(username, password)
@@ -23,4 +26,8 @@ class UserExistViewModel(private val userRepository: UserRepository) : ViewModel
             }
             .launchIn(viewModelScope)
     }
+
+
+
+
 }

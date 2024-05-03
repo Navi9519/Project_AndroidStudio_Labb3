@@ -28,9 +28,9 @@ fun MyApp(
         composable("AboutScreen") { AboutScreen(navController) }
         composable("LoginScreen") { LoginScreen(navController, userExistViewModel) }
         composable("SignUpScreen") { SignUpScreen(navController, userRepository, userExistViewModel) }
-        composable("FindCocktailScreen/{username}") {backStackEntry ->  FindCocktailScreen(
+        composable("FindCocktailScreen") { FindCocktailScreen(
             navController,
-            username = backStackEntry.arguments?.getString("username")
+            userExistViewModel
         )
 
         }

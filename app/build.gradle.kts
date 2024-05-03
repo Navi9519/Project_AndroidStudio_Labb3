@@ -64,11 +64,14 @@ dependencies {
 
     // https://mvnrepository.com/artifact/io.github.raamcosta.compose-destinations/core
     // Destinations - Navigation dependencies
-    implementation ("io.github.raamcosta.compose-destinations:core:1.10.2" )
+   /* implementation ("io.github.raamcosta.compose-destinations:core:1.10.2" )
     ksp("io.github.raamcosta.compose-destinations:ksp:1.10.2" )
+
+    */
 
     // Room DB
     implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     androidTestImplementation("androidx.room:room-testing:2.6.1")
     implementation ("androidx.room:room-ktx:2.6.1" )
     // To use Kotlin annotation processing tool (kapt)

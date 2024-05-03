@@ -3,7 +3,9 @@ package com.navi9519.labb_3_cocktail_app.model.database.user
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Upsert
+import com.navi9519.labb_3_cocktail_app.model.database.relation.UserWithCocktails
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,5 +26,9 @@ interface UserDAO {
 
     @Query("SELECT * FROM users WHERE name = :username")
     fun findExistingUser(username: String): Flow<User?>
+
+    @Transaction
+    @Query("SELECT * FROM users")
+    fun getUsersWithCocktails(): Flow<List<UserWithCocktails>>
 
 }

@@ -28,9 +28,7 @@ import androidx.navigation.NavHostController
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.Title
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootNavGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+
 
 
 

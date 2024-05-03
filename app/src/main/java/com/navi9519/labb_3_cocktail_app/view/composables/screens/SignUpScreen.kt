@@ -74,18 +74,34 @@ fun SignUpScreen(
 
             viewModel.register(username) { usernameIsRegistered ->
                 if (!usernameIsRegistered) {
+
+                    println("Inside if")
                     // Add the user to the database
+
                     userRepository.performDatabaseOperation(Dispatchers.IO) {
                         val newUser = User(email, username, password)
                         userRepository.insertOrUpdateUser(newUser)
-                    }
 
+                        // Todo -> Fix bug with signup/navigation
+                        viewModel.login(username, password) { isUserLoggedIn ->
+                            if (isUserLoggedIn) {
+                                println("Before")
+                                viewModel.username.value = username
+                                println("After")
+                                navController.navigate("FindCocktailScreen")
+                            } else {
+                                println("Invalid username or password")
+                            }
+                        }
+
+                    }
 
                 } else {
                     Toast.makeText(context, "username ''$username'' already exists",
                         Toast.LENGTH_LONG).show()
 
                 }
+
 
             }
                 // Print all users
@@ -99,6 +115,8 @@ fun SignUpScreen(
                             println(it)
                         }
                     }
+
+
                 }
 
 
@@ -188,10 +206,20 @@ fun SignUpScreen(
                 )
 
 
+               /* Btn("Sign Up") {
+
+                    addUserAndPrintUsers()
+                    navController.navigate("LoginScreen")
+                }
+
+                */
+
                 Btn("Sign Up") {
 
                     addUserAndPrintUsers()
+                   navController.navigate("SignUpScreen")
                 }
+
                 Row() {
                     AccountOrNot(
                         text = "Allready have a account? ",

@@ -9,15 +9,14 @@
     import androidx.compose.material3.Surface
     import androidx.compose.ui.Modifier
     import androidx.lifecycle.lifecycleScope
-    import androidx.navigation.NavGraph
+
     import com.navi9519.labb_3_cocktail_app.model.database.MyDatabase
     import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
     import com.navi9519.labb_3_cocktail_app.navigation.MyApp
     import com.navi9519.labb_3_cocktail_app.view.composables.CocktailCard
-    import com.navi9519.labb_3_cocktail_app.view.composables.TestApi
     import com.navi9519.labb_3_cocktail_app.view.composables.screens.UserCocktailScreen
     import com.navi9519.labb_3_cocktail_app.view.theme.Labb_3_Cocktail_appTheme
-    import com.ramcosta.composedestinations.DestinationsNavHost
+
 
     class MainActivity : ComponentActivity() {
         override fun onCreate(savedInstanceState: Bundle?) {

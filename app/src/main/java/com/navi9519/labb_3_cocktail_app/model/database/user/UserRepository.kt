@@ -1,6 +1,8 @@
 package com.navi9519.labb_3_cocktail_app.model.database.user
 
 import com.navi9519.labb_3_cocktail_app.model.database.MyDatabase
+import com.navi9519.labb_3_cocktail_app.model.database.cocktail.Cocktail
+import com.navi9519.labb_3_cocktail_app.model.database.relation.UserWithCocktails
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -32,6 +34,11 @@ class UserRepository (
 
     fun findExistingUser(username: String): Flow<User?> {
         return myDatabase.userDao().findExistingUser(username)
+
+    }
+
+    fun findCocktails(username: String): Flow<List<UserWithCocktails>?> {
+        return myDatabase.userDao().findCocktails(username)
 
     }
 

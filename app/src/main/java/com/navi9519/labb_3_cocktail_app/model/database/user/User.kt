@@ -9,7 +9,7 @@ data class User(
     val email: String,
     val name: String,
     val password: String,
-    val favoriteCocktail: Cocktail
+    val favoriteCocktail: Cocktail? = null
 )   {
 
     @PrimaryKey(autoGenerate = true)

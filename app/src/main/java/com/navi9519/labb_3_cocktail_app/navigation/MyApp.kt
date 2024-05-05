@@ -30,7 +30,8 @@ fun MyApp(
         composable("SignUpScreen") { SignUpScreen(navController, userRepository, userExistViewModel) }
         composable("FindCocktailScreen") { FindCocktailScreen(
             navController,
-            userExistViewModel
+            userExistViewModel,
+            userRepository
         )
 
         }

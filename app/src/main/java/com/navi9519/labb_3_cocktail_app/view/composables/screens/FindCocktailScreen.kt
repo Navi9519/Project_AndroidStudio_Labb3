@@ -36,11 +36,12 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.navi9519.labb_3_cocktail_app.R
+import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
-
+import kotlinx.coroutines.flow.map
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,10 +49,13 @@ import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
 //@Preview(showBackground = true)
 fun FindCocktailScreen(
     navController: NavController,
-    userViewModel: UserExistViewModel
+    userViewModel: UserExistViewModel,
+    userRepository: UserRepository
+
 ) {
 
     val viewModel: DrinksViewModel = viewModel()
+    val username = userViewModel.username.value
 
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -104,7 +108,7 @@ fun FindCocktailScreen(
                 tonalElevation = 0.dp
             )
 Text(
-    text = "Hello, ${userViewModel.username.value}, 10 random Cocktails for you:",
+    text = "Hello, ${username}, 10 random Cocktails for you:",
     modifier = Modifier
         .padding(top = 45.dp, bottom = 20.dp),
     fontStyle = FontStyle.Italic,
@@ -125,8 +129,16 @@ Text(
             CocktailList(viewModel,"Add to favorites")
 
             Btn(text = "My Cocktails") {
+/*
+           val cocktails = userRepository.findCocktails(userViewModel.username.value)
 
-                navController.navigate("UserCocktailScreen/${userViewModel.username}")
+                println(
+                   cocktails.map { cocktail ->
+                       cocktail?.get(0)
+                   }
+                )
+*/
+                navController.navigate("UserCocktailScreen/${username}")
 
             }
 

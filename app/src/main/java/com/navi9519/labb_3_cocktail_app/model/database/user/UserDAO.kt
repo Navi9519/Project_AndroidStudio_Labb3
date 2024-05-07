@@ -2,11 +2,14 @@ package com.navi9519.labb_3_cocktail_app.model.database.user
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
+import com.navi9519.labb_3_cocktail_app.model.database.cocktail.Cocktail
 import com.navi9519.labb_3_cocktail_app.model.database.relation.UserWithCocktails
 import kotlinx.coroutines.flow.Flow
+import retrofit2.http.POST
 
 @Dao
 interface UserDAO {
@@ -31,4 +34,13 @@ interface UserDAO {
     @Query("SELECT * FROM users WHERE name = :username")
     fun findCocktails(username: String): Flow<List<UserWithCocktails>>
 
+    @Transaction
+    @Query("SELECT * FROM users WHERE name  = :username")
+    fun findUserByUsername(username: String): User?
+
+
+    @Insert
+    fun saveCocktail(cocktail: Cocktail)
+
 }
+

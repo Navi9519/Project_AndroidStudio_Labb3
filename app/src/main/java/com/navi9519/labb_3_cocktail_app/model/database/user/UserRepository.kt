@@ -1,5 +1,4 @@
 package com.navi9519.labb_3_cocktail_app.model.database.user
-
 import com.navi9519.labb_3_cocktail_app.model.database.MyDatabase
 import com.navi9519.labb_3_cocktail_app.model.database.cocktail.Cocktail
 import com.navi9519.labb_3_cocktail_app.model.database.relation.UserWithCocktails
@@ -42,10 +41,16 @@ class UserRepository (
 
     }
 
+    fun saveCocktail(cocktail: Cocktail) {
+        return myDatabase.userDao().saveCocktail(cocktail)
+    }
+
         // Handle Thread Operations
         fun performDatabaseOperation(dispatcher: CoroutineDispatcher, databaseOperation: suspend () -> Unit) {
             coroutineScope.launch(dispatcher) {
                 databaseOperation()
             }
         }
+
+
     }

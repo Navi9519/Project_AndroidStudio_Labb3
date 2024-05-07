@@ -1,6 +1,6 @@
 package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
-import UserExistViewModel
+import UserViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SearchBar
@@ -30,7 +31,6 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -41,7 +41,6 @@ import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
-import kotlinx.coroutines.flow.map
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +48,7 @@ import kotlinx.coroutines.flow.map
 //@Preview(showBackground = true)
 fun FindCocktailScreen(
     navController: NavController,
-    userViewModel: UserExistViewModel,
+    userViewModel: UserViewModel,
     userRepository: UserRepository
 
 ) {
@@ -129,6 +128,8 @@ Text(
             CocktailList(viewModel,"Add to favorites")
 
             Btn(text = "My Cocktails") {
+
+                //user
 /*
            val cocktails = userRepository.findCocktails(userViewModel.username.value)
 
@@ -137,6 +138,7 @@ Text(
                        cocktail?.get(0)
                    }
                 )
+
 */
                 navController.navigate("UserCocktailScreen/${username}")
 
@@ -147,6 +149,14 @@ Text(
 
                 navController.navigate("HomeScreen")
 
+            }
+            
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Debugg 1 ")
+            }
+
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Debugg 2 ")
             }
 
         }

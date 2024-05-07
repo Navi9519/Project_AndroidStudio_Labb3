@@ -1,6 +1,6 @@
 package com.navi9519.labb_3_cocktail_app.navigation
 
-import UserExistViewModel
+import UserViewModel
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,7 +17,7 @@ import com.navi9519.labb_3_cocktail_app.view.composables.screens.UserCocktailScr
 @Composable
 fun MyApp(
     userRepository: UserRepository,
-    userExistViewModel: UserExistViewModel,
+    userViewModel: UserViewModel,
 ) {
     val navController = rememberNavController()
 
@@ -26,11 +26,11 @@ fun MyApp(
     NavHost(navController = navController, startDestination = "HomeScreen") {
         composable("HomeScreen") { HomeScreen(navController) }
         composable("AboutScreen") { AboutScreen(navController) }
-        composable("LoginScreen") { LoginScreen(navController, userExistViewModel) }
-        composable("SignUpScreen") { SignUpScreen(navController, userRepository, userExistViewModel) }
+        composable("LoginScreen") { LoginScreen(navController, userViewModel) }
+        composable("SignUpScreen") { SignUpScreen(navController, userRepository, userViewModel) }
         composable("FindCocktailScreen") { FindCocktailScreen(
             navController,
-            userExistViewModel,
+            userViewModel,
             userRepository
         )
 

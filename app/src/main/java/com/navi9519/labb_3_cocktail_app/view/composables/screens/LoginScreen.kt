@@ -1,6 +1,6 @@
 package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
-import UserExistViewModel
+import UserViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import com.navi9519.labb_3_cocktail_app.R
-import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
 import com.navi9519.labb_3_cocktail_app.view.composables.AccountOrNot
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.SignInInputField
@@ -40,7 +39,7 @@ import com.navi9519.labb_3_cocktail_app.view.composables.Title
 //@Preview(showBackground = true)
 fun LoginScreen(
     navController: NavController,
-    viewModel: UserExistViewModel,
+    viewModel: UserViewModel,
 ) {
 
     val usernameState = remember { mutableStateOf(TextFieldValue("")) }

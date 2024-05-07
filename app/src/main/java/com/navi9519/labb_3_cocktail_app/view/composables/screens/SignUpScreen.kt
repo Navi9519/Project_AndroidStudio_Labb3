@@ -1,6 +1,6 @@
 package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
-import UserExistViewModel
+import UserViewModel
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -26,14 +26,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.model.database.user.User
 import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
@@ -42,7 +37,6 @@ import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.SignInInputField
 import com.navi9519.labb_3_cocktail_app.view.composables.Title
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 
 
 @Composable
@@ -50,7 +44,7 @@ import kotlinx.coroutines.flow.collect
 fun SignUpScreen(
     navController: NavController,
     userRepository: UserRepository,
-    viewModel: UserExistViewModel
+    viewModel: UserViewModel
 
 ) {
 
@@ -79,7 +73,7 @@ fun SignUpScreen(
                     // Add the user to the database
 
                     userRepository.performDatabaseOperation(Dispatchers.IO) {
-                        val newUser = User(email, username, password)
+                        val newUser = User(email, username, password )
                         userRepository.insertOrUpdateUser(newUser)
 
                         // Todo -> Fix bug with signup/navigation
@@ -97,7 +91,8 @@ fun SignUpScreen(
                     }
 
                 } else {
-                    Toast.makeText(context, "username ''$username'' already exists",
+
+                    Toast.makeText(context, "username ''${username}'' already exists",
                         Toast.LENGTH_LONG).show()
 
                 }

@@ -32,6 +32,7 @@
     import androidx.compose.material3.TextButton
     import androidx.compose.runtime.Composable
     import androidx.compose.runtime.LaunchedEffect
+    import androidx.compose.runtime.collectAsState
     import androidx.compose.runtime.getValue
     import androidx.compose.ui.Alignment
     import androidx.compose.ui.Modifier
@@ -64,6 +65,10 @@
     import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
     import com.navi9519.labb_3_cocktail_app.viewmodels.userViewModel.UserViewModel
     import kotlinx.coroutines.Dispatchers
+    import androidx.compose.runtime.getValue
+    import androidx.compose.runtime.collectAsState
+    import com.navi9519.labb_3_cocktail_app.model.database.relation.UserWithCocktails
+    import com.navi9519.labb_3_cocktail_app.model.database.user.User
 
 
     // Reusable button composable for all screens
@@ -267,7 +272,7 @@
 
     /// Components for rendering cocktails
     @Composable
-    fun CocktailList(
+    fun FindCocktailList(
         viewModel: DrinksViewModel = viewModel(),
         text: String,
         userViewModel: UserViewModel,
@@ -363,6 +368,75 @@
 
 
 
+
+    @Composable
+    fun UserCocktailList(
+        text: String,
+        userViewModel: UserViewModel,
+        userRepository: UserRepository
+    ) {
+
+        val userId = userViewModel.userId.longValue
+        val userName = userViewModel.username.value
+        // Collect user's cocktails from the repository
+        val userCocktails by userRepository.findCocktails(userName).collectAsState(initial = null
+        )
+
+
+
+        if (userCocktails != null && userCocktails!!.cocktails.isNotEmpty()) {
+            LazyColumn(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(420.dp)
+                    .padding(horizontal = 40.dp, vertical = 20.dp)
+            ) {
+                items(userCocktails!!.cocktails) { cocktail ->
+                        Row(
+                            modifier = Modifier
+                                .padding(horizontal = 10.dp)
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            // Invoke CocktailListItem composable
+                            cocktail.cocktailName?.let {
+                                CocktailListItem(
+                                    cocktailName = it,
+                                )
+                            }
+                            BtnAddOrRemove(
+                                text,
+                                onClick = {
+
+                                }
+                            )
+                    }
+                }
+            }
+        } else {
+            Text(
+                text = "No Cocktails added",
+                fontSize = 17.sp,
+                fontWeight = FontWeight.Bold,
+                color = GoldColor,
+                fontFamily = FontFamily.Default,
+                textAlign = TextAlign.Center,
+                textDecoration = TextDecoration.Underline,
+                style = LocalTextStyle.current.copy(
+                    shadow =  Shadow(
+                        color = Color.Black,
+                        offset = Offset(-1f, 1f),
+                        blurRadius = 8f
+                    )
+                ))
+        }
+    }
+
+
+
     @Composable
     fun CocktailListItem(
         cocktailImg: String? = null,
@@ -376,7 +450,9 @@
 
         Text(
             modifier = Modifier.
-            clickable(onClick = {} )
+            clickable(onClick = {
+
+            } )
             ,
             text = cocktailName.take(maxLength),
             fontSize = 17.sp,

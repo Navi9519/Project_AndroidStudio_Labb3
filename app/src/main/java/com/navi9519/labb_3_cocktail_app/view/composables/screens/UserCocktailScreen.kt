@@ -29,7 +29,7 @@ import androidx.navigation.NavController
 import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
-import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
+import com.navi9519.labb_3_cocktail_app.view.composables.UserCocktailList
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
 import com.navi9519.labb_3_cocktail_app.viewmodels.userViewModel.UserViewModel
@@ -104,7 +104,9 @@ fun UserCocktailScreen(
                 )
 
             )
-            CocktailList(viewModel, "Remove", userViewModel, userRepository )
+
+            //CocktailList(viewModel, "Remove", userViewModel, userRepository )
+            UserCocktailList(text = "Remove", userViewModel, userRepository)
 
             Btn(text = "Find cocktails") {
                 navController.navigate("FindCocktailScreen")

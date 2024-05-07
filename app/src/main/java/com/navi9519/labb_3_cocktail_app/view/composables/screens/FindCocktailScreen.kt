@@ -39,7 +39,7 @@ import com.navi9519.labb_3_cocktail_app.R
 import com.navi9519.labb_3_cocktail_app.model.database.cocktail.Cocktail
 import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
-import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
+import com.navi9519.labb_3_cocktail_app.view.composables.FindCocktailList
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
 import kotlinx.coroutines.Dispatchers.IO
@@ -70,11 +70,10 @@ fun FindCocktailScreen(
 
         )
 
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(state = rememberScrollState())
-            ,
+                .verticalScroll(state = rememberScrollState()),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -109,31 +108,31 @@ fun FindCocktailScreen(
                 onActiveChange = {},
                 tonalElevation = 0.dp
             )
-Text(
-    text = "Hello, ${username}, 10 random Cocktails for you:",
-    modifier = Modifier
-        .padding(top = 45.dp, bottom = 20.dp),
-    fontStyle = FontStyle.Italic,
-    fontSize = 30.sp,
-    fontWeight = FontWeight.Bold,
-    maxLines = 3,
-    style = TextStyle(
-        color = GoldColor,
-        textAlign = TextAlign.Center,
-        shadow = Shadow(
-            color = Color.Black,
-            offset = Offset(-16f, 16f),
-            blurRadius = 8f
-        )
-    )
+            Text(
+                text = "Hello, ${username}, 10 random Cocktails for you:",
+                modifier = Modifier
+                    .padding(top = 45.dp, bottom = 20.dp),
+                fontStyle = FontStyle.Italic,
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                maxLines = 3,
+                style = TextStyle(
+                    color = GoldColor,
+                    textAlign = TextAlign.Center,
+                    shadow = Shadow(
+                        color = Color.Black,
+                        offset = Offset(-16f, 16f),
+                        blurRadius = 8f
+                    )
+                )
 
-)
-            CocktailList(viewModel,"Add to favorites", userViewModel, userRepository)
+            )
+            FindCocktailList(viewModel, "Add to favorites", userViewModel, userRepository)
 
             Btn(text = "My Cocktails") {
 
                 //user
-/*
+                /*
            val cocktails = userRepository.findCocktails(userViewModel.username.value)
 
                 println(
@@ -155,7 +154,7 @@ Text(
             }
 
             // TODO -> Move logic to reusable composable
-
+            /*
             Button(onClick = {
                 userRepository.performDatabaseOperation(IO) {
                     userRepository.saveCocktail(
@@ -182,9 +181,13 @@ Text(
                 Text(text = "Fetch cocktails ")
             }
 
+
+ */
         }
 
     }
 
 }
+
+
 

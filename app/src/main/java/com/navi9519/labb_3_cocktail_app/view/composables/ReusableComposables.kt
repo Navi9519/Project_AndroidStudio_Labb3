@@ -404,13 +404,16 @@
                             // Invoke CocktailListItem composable
                             cocktail.cocktailName?.let {
                                 CocktailListItem(
-                                    cocktailName = it,
+                                    cocktailName = cocktail.cocktailName,
                                 )
                             }
                             BtnAddOrRemove(
                                 text,
                                 onClick = {
 
+                                    userRepository.performDatabaseOperation(Dispatchers.IO) {
+                                        userRepository.deleteCocktailById(cocktail)
+                                    }
                                 }
                             )
                     }

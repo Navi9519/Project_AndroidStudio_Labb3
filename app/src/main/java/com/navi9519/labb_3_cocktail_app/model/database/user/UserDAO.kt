@@ -42,5 +42,8 @@ interface UserDAO {
     @Insert
     fun saveCocktail(cocktail: Cocktail)
 
+    @Delete
+    fun deleteCocktailById(cocktail: Cocktail)
+
 }
 

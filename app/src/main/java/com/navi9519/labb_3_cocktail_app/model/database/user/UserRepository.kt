@@ -46,6 +46,14 @@ class UserRepository (
         return myDatabase.userDao().saveCocktail(cocktail)
     }
 
+
+    // DELETE USER BY ID
+    fun deleteCocktailById(cocktail: Cocktail) {
+
+
+        myDatabase.userDao().deleteCocktailById(cocktail)
+    }
+
         // Handle Thread Operations
         fun performDatabaseOperation(dispatcher: CoroutineDispatcher, databaseOperation: suspend () -> Unit) {
             coroutineScope.launch(dispatcher) {

@@ -36,9 +36,10 @@ class UserRepository (
 
     }
 
-    fun findCocktails(username: String): Flow<List<UserWithCocktails>?> {
-        return myDatabase.userDao().findCocktails(username)
 
+
+    fun findCocktails(username: String): Flow<UserWithCocktails> {
+        return myDatabase.userDao().findCocktails(username)
     }
 
     fun saveCocktail(cocktail: Cocktail) {

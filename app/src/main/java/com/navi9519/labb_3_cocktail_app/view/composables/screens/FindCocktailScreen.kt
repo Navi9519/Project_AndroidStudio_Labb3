@@ -1,6 +1,6 @@
 package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
-import UserViewModel
+import com.navi9519.labb_3_cocktail_app.viewmodels.userViewModel.UserViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -36,11 +36,13 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.navi9519.labb_3_cocktail_app.R
+import com.navi9519.labb_3_cocktail_app.model.database.cocktail.Cocktail
 import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
+import kotlinx.coroutines.Dispatchers.IO
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,6 +57,7 @@ fun FindCocktailScreen(
 
     val viewModel: DrinksViewModel = viewModel()
     val username = userViewModel.username.value
+    val userId = userViewModel.userId.longValue
 
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -125,7 +128,7 @@ Text(
     )
 
 )
-            CocktailList(viewModel,"Add to favorites")
+            CocktailList(viewModel,"Add to favorites", userViewModel, userRepository)
 
             Btn(text = "My Cocktails") {
 
@@ -140,7 +143,7 @@ Text(
                 )
 
 */
-                navController.navigate("UserCocktailScreen/${username}")
+                navController.navigate("UserCocktailScreen")
 
             }
 
@@ -150,13 +153,33 @@ Text(
                 navController.navigate("HomeScreen")
 
             }
-            
-            Button(onClick = { /*TODO*/ }) {
-                Text(text = "Debugg 1 ")
+
+            // TODO -> Move logic to reusable composable
+
+            Button(onClick = {
+                userRepository.performDatabaseOperation(IO) {
+                    userRepository.saveCocktail(
+                        Cocktail(
+                            "TEST_IMG",
+                            "TEST_NAME",
+                            "TEST_CAT",
+                            "TEST_INSTR.",
+                            userId//
+                        )
+                    )
+                }
+            }) {
+                Text(text = "Save cocktail 1 ")
             }
 
-            Button(onClick = { /*TODO*/ }) {
-                Text(text = "Debugg 2 ")
+            Button(onClick = {
+                userRepository.performDatabaseOperation(IO) {
+                    userRepository.findCocktails("ivan").collect {
+                        println(it)
+                    }
+                }
+            }) {
+                Text(text = "Fetch cocktails ")
             }
 
         }

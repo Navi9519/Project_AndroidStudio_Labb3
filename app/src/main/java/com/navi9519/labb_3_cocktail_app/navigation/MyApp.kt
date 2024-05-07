@@ -1,6 +1,6 @@
 package com.navi9519.labb_3_cocktail_app.navigation
 
-import UserViewModel
+import com.navi9519.labb_3_cocktail_app.viewmodels.userViewModel.UserViewModel
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -36,9 +36,10 @@ fun MyApp(
 
         }
 
-        composable("UserCocktailScreen/{username}") {backStackEntry ->  UserCocktailScreen(
+        composable("UserCocktailScreen") { UserCocktailScreen(
             navController,
-            username = backStackEntry.arguments?.getString("username")
+            userViewModel,
+            userRepository
         )
 
         }

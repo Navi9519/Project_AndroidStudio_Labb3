@@ -1,6 +1,6 @@
 package com.navi9519.labb_3_cocktail_app.view.composables.screens
 
-import UserViewModel
+import com.navi9519.labb_3_cocktail_app.viewmodels.userViewModel.UserViewModel
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

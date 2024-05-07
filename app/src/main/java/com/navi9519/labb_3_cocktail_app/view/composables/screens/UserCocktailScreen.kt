@@ -27,20 +27,25 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.navi9519.labb_3_cocktail_app.R
+import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
 import com.navi9519.labb_3_cocktail_app.view.composables.Btn
 import com.navi9519.labb_3_cocktail_app.view.composables.CocktailList
 import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
 import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
+import com.navi9519.labb_3_cocktail_app.viewmodels.userViewModel.UserViewModel
 
 
 @Composable
 //@Preview(showBackground = true)
 fun UserCocktailScreen(
     navController: NavController,
-    username: String?
+    userViewModel: UserViewModel,
+    userRepository: UserRepository
 ) {
 
     val viewModel: DrinksViewModel = viewModel()
+    val username = userViewModel.username.value
+
 
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -99,7 +104,7 @@ fun UserCocktailScreen(
                 )
 
             )
-            CocktailList(viewModel, "Remove")
+            CocktailList(viewModel, "Remove", userViewModel, userRepository )
 
             Btn(text = "Find cocktails") {
                 navController.navigate("FindCocktailScreen")

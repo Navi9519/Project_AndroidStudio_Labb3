@@ -1,6 +1,5 @@
     package com.navi9519.labb_3_cocktail_app.view.composables
 
-    import UserViewModel
     import androidx.compose.foundation.BorderStroke
     import androidx.compose.foundation.background
     import androidx.compose.foundation.clickable
@@ -59,8 +58,12 @@
     import androidx.compose.ui.window.Dialog
     import androidx.lifecycle.viewmodel.compose.viewModel
     import coil.compose.AsyncImage
+    import com.navi9519.labb_3_cocktail_app.model.database.cocktail.Cocktail
+    import com.navi9519.labb_3_cocktail_app.model.database.user.UserRepository
     import com.navi9519.labb_3_cocktail_app.view.theme.GoldColor
     import com.navi9519.labb_3_cocktail_app.viewmodels.DrinksViewModel
+    import com.navi9519.labb_3_cocktail_app.viewmodels.userViewModel.UserViewModel
+    import kotlinx.coroutines.Dispatchers
 
 
     // Reusable button composable for all screens
@@ -267,11 +270,13 @@
     fun CocktailList(
         viewModel: DrinksViewModel = viewModel(),
         text: String,
-    )
-    {
-
-
+        userViewModel: UserViewModel,
+        userRepository: UserRepository
+    ) {
         val drinksList by viewModel.drinksUiState
+
+        val username = userViewModel.username.value
+        val userId = userViewModel.userId.longValue
 
         // Trigger fetch on initial composition
         LaunchedEffect(true) {
@@ -279,8 +284,6 @@
         }
 
         if (drinksList.isNotEmpty()) {
-
-
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceEvenly,
@@ -298,20 +301,63 @@
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            CocktailListItem(cocktailName = cocktail.cocktailName, )
+                            // Invoke CocktailListItem composable
+                            CocktailListItem(
+                                cocktailName = cocktail.cocktailName,
+                              /*  onClick = {
+                                    // Invoke CocktailCard composable
+                                   CocktailCard(
+                                        cocktailImg = cocktail.cocktailImg,
+                                        cocktailName = cocktail.cocktailName,
+                                        cocktailCategory = cocktail.cocktailCategory,
+                                        cocktailInstructions = cocktail.cocktailInstructions,
+                                        onDismissRequest = {},
+                                        onConfirmation = {}
+                                    )
+
+                                }
+
+
+                               */
+
+                            )
                             BtnAddOrRemove(
                                 text,
                                 onClick = {
 
+                                    userRepository.performDatabaseOperation(Dispatchers.IO) {
+                                        userRepository.saveCocktail(
+                                            Cocktail( cocktail.cocktailImg,
+                                                cocktail.cocktailName,
+                                                cocktail.cocktailCategory,
+                                                cocktail.cocktailInstructions,
+                                                userId
+                                            )
+                                        )
+                                    }
+
                                 }
                             )
                         }
-
                     }
                 }
             }
         } else {
-            Text(text = "Loading...")
+            Text(
+                text = "Loading...",
+                fontSize = 17.sp,
+                fontWeight = FontWeight.Bold,
+                color = GoldColor,
+                fontFamily = FontFamily.Default,
+                textAlign = TextAlign.Center,
+                textDecoration = TextDecoration.Underline,
+                style = LocalTextStyle.current.copy(
+                    shadow =  Shadow(
+                        color = Color.Black,
+                        offset = Offset(-1f, 1f),
+                        blurRadius = 8f
+                    )
+                ))
         }
     }
 
@@ -319,16 +365,19 @@
 
     @Composable
     fun CocktailListItem(
+        cocktailImg: String? = null,
         cocktailName: String,
+        cocktailCategory: String? = null,
+        cocktailInstructions: String? = null,
+      // onClick: () -> Unit,
     ) {
 
         val maxLength = 20
 
         Text(
             modifier = Modifier.
-            clickable {
-
-            },
+            clickable(onClick = {} )
+            ,
             text = cocktailName.take(maxLength),
             fontSize = 17.sp,
             fontWeight = FontWeight.Bold,
@@ -347,6 +396,77 @@
     }
 
 
+
+
+    @Composable
+    fun CocktailCard(
+        cocktailImg: String,
+        cocktailName: String,
+        cocktailCategory: String,
+        cocktailInstructions: String,
+        onDismissRequest: () -> Unit,
+       onConfirmation: () -> Unit,
+
+        ) {
+
+
+
+            Dialog(onDismissRequest = { onDismissRequest() }) {
+                // Draw a rectangle shape with rounded corners inside the dialog
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(375.dp)
+                        .padding(16.dp),
+                    shape = RoundedCornerShape(16.dp),
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        AsyncImage(
+                            model = cocktailImg,
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .size(200.dp)
+                                .clip(shape = CircleShape)
+                        )
+                        Text(
+                            text = cocktailName
+                        )
+                        Text(
+                            text = cocktailCategory
+                        )
+                        Text(
+                            text = cocktailInstructions
+                        )
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                        ) {
+                            TextButton(
+                                onClick = { onDismissRequest() },
+                                modifier = Modifier.padding(8.dp),
+                            ) {
+                                Text("Back")
+                            }
+                            TextButton(
+                                onClick = { onConfirmation() },
+                                modifier = Modifier.padding(8.dp),
+                            ) {
+                                Text("Add Drink")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+/*
     // Cocktail modal
     @Composable
     fun CocktailCard(
@@ -424,3 +544,5 @@
             Text(text = "Loading...")
         }
     }
+
+    */

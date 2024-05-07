@@ -12,13 +12,12 @@
                 val cocktailName: String? = null,
                 val cocktailCategory: String? = null,
                 val cocktailInstructions: String? = null,
-
-                @PrimaryKey
-                val cocktailId: Long,
                 // Foreign Key
-                val userId: Long,
+                val userId: Long? = null
             )
             {
+                @PrimaryKey
+                var cocktailId: Long? = null
 
             }
 

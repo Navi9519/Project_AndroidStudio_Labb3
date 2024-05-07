@@ -10,7 +10,7 @@ import com.navi9519.labb_3_cocktail_app.model.database.relation.Converters
 import com.navi9519.labb_3_cocktail_app.model.database.user.User
 import com.navi9519.labb_3_cocktail_app.model.database.user.UserDAO
 
-@Database(entities = [User::class, Cocktail::class], version = 4) // Incremented version number
+@Database(entities = [User::class, Cocktail::class], version = 1) // Incremented version number
 @TypeConverters(Converters::class)
 abstract class MyDatabase : RoomDatabase() {
 
@@ -29,6 +29,7 @@ abstract class MyDatabase : RoomDatabase() {
                     MyDatabase::class.java,
                     "my-app-db"
                 )
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

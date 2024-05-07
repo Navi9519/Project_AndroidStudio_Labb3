@@ -30,14 +30,14 @@ interface UserDAO {
     @Query("SELECT * FROM users WHERE name = :username")
     fun findExistingUser(username: String): Flow<User?>
 
-    @Transaction
-    @Query("SELECT * FROM users WHERE name = :username")
-    fun findCocktails(username: String): Flow<List<UserWithCocktails>>
 
     @Transaction
     @Query("SELECT * FROM users WHERE name  = :username")
     fun findUserByUsername(username: String): User?
 
+    @Transaction
+    @Query("SELECT * FROM users WHERE name = :username")
+    fun findCocktails(username: String): Flow<UserWithCocktails>
 
     @Insert
     fun saveCocktail(cocktail: Cocktail)

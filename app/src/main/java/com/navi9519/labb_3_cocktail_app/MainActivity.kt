@@ -1,6 +1,6 @@
     package com.navi9519.labb_3_cocktail_app
 
-    import UserViewModel
+    import com.navi9519.labb_3_cocktail_app.viewmodels.userViewModel.UserViewModel
     import android.os.Bundle
     import androidx.activity.ComponentActivity
     import androidx.activity.compose.setContent

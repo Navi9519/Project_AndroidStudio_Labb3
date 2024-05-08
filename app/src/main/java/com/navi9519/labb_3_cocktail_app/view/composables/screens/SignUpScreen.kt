@@ -192,27 +192,12 @@ fun SignUpScreen(
                     visual = PasswordVisualTransformation()
                 )
 
-                SignInInputField(
-                    passwordState.value,
-                    { newValue -> passwordState.value = newValue },
-                    icon = "lock",
-                    placeholder = "Confirm Password",
-                    visual = PasswordVisualTransformation()
-                )
 
 
-               /* Btn("Sign Up") {
-
-                    addUserAndPrintUsers()
-                    navController.navigate("LoginScreen")
-                }
-
-                */
 
                 Btn("Sign Up") {
-
                     addUserAndPrintUsers()
-                   navController.navigate("SignUpScreen")
+
                 }
 
                 Row() {

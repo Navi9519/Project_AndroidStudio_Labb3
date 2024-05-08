@@ -1,5 +1,6 @@
     package com.navi9519.labb_3_cocktail_app.view.composables
 
+    import android.net.Uri
     import androidx.compose.foundation.BorderStroke
     import androidx.compose.foundation.background
     import androidx.compose.foundation.clickable
@@ -68,8 +69,10 @@
     import androidx.compose.runtime.getValue
     import androidx.compose.runtime.collectAsState
     import androidx.compose.runtime.mutableStateOf
+    import androidx.navigation.NavController
     import com.navi9519.labb_3_cocktail_app.model.database.relation.UserWithCocktails
     import com.navi9519.labb_3_cocktail_app.model.database.user.User
+    import com.navi9519.labb_3_cocktail_app.view.composables.screens.CocktailCardScreen
 
 
     // Reusable button composable for all screens
@@ -274,6 +277,7 @@
     /// Components for rendering cocktails
     @Composable
     fun FindCocktailList(
+        navController: NavController,
         viewModel: DrinksViewModel = viewModel(),
         text: String,
         userViewModel: UserViewModel,
@@ -365,6 +369,7 @@
 
     @Composable
     fun UserCocktailList(
+        navController: NavController,
         text: String,
         userViewModel: UserViewModel,
         userRepository: UserRepository
@@ -396,14 +401,20 @@
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             // Invoke CocktailListItem composable
-                            cocktail.cocktailName?.let {
-                                CocktailListItem(
-                                    cocktailName = cocktail.cocktailName,
-                                    onClick = {
+                            val cocktailImg = cocktail.cocktailImg
+                            val cocktailName = cocktail.cocktailName
+                            val cocktailCategory = cocktail.cocktailCategory
+                            val cocktailInstructions = cocktail.cocktailInstructions
 
+                                cocktail.cocktailName?.let {
+                                    CocktailListItem(
+                                        cocktailName = cocktail.cocktailName,
+                                        onClick = {
 
-                                    }
-                                )
+                                            navController.navigate("CocktailCardScreen/${cocktailName}")
+
+                                        }
+                                    )
                             }
                             BtnAddOrRemove(
                                 text,

@@ -106,7 +106,7 @@ fun UserCocktailScreen(
             )
 
             //CocktailList(viewModel, "Remove", userViewModel, userRepository )
-            UserCocktailList(text = "Remove", userViewModel, userRepository)
+            UserCocktailList(navController, text = "Remove", userViewModel, userRepository)
 
             Btn(text = "Find cocktails") {
                 navController.navigate("FindCocktailScreen")

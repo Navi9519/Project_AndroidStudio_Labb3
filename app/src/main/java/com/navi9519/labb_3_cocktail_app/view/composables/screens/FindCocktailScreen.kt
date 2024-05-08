@@ -127,7 +127,7 @@ fun FindCocktailScreen(
                 )
 
             )
-            FindCocktailList(viewModel, "Add to favorites", userViewModel, userRepository)
+            FindCocktailList(navController, viewModel, "Add to favorites", userViewModel, userRepository)
 
             Btn(text = "My Cocktails") {
 

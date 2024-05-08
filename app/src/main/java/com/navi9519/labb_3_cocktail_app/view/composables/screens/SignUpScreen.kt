@@ -82,7 +82,7 @@ fun SignUpScreen(
                                 println("Before")
                                 viewModel.username.value = username
                                 println("After")
-                                navController.navigate("FindCocktailScreen")
+                                navController.navigate("LoginScreen")
                             } else {
                                 println("Invalid username or password")
                             }

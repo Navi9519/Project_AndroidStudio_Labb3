@@ -67,6 +67,7 @@
     import kotlinx.coroutines.Dispatchers
     import androidx.compose.runtime.getValue
     import androidx.compose.runtime.collectAsState
+    import androidx.compose.runtime.mutableStateOf
     import com.navi9519.labb_3_cocktail_app.model.database.relation.UserWithCocktails
     import com.navi9519.labb_3_cocktail_app.model.database.user.User
 
@@ -279,9 +280,9 @@
         userRepository: UserRepository
     ) {
         val drinksList by viewModel.drinksUiState
-
         val username = userViewModel.username.value
         val userId = userViewModel.userId.longValue
+
 
         // Trigger fetch on initial composition
         LaunchedEffect(true) {
@@ -309,21 +310,14 @@
                             // Invoke CocktailListItem composable
                             CocktailListItem(
                                 cocktailName = cocktail.cocktailName,
-                              /*  onClick = {
+                              onClick = {
                                     // Invoke CocktailCard composable
-                                   CocktailCard(
-                                        cocktailImg = cocktail.cocktailImg,
-                                        cocktailName = cocktail.cocktailName,
-                                        cocktailCategory = cocktail.cocktailCategory,
-                                        cocktailInstructions = cocktail.cocktailInstructions,
-                                        onDismissRequest = {},
-                                        onConfirmation = {}
-                                    )
+
 
                                 }
 
 
-                               */
+
 
                             )
                             BtnAddOrRemove(
@@ -376,7 +370,7 @@
         userRepository: UserRepository
     ) {
 
-        val userId = userViewModel.userId.longValue
+
         val userName = userViewModel.username.value
         // Collect user's cocktails from the repository
         val userCocktails by userRepository.findCocktails(userName).collectAsState(initial = null
@@ -405,6 +399,10 @@
                             cocktail.cocktailName?.let {
                                 CocktailListItem(
                                     cocktailName = cocktail.cocktailName,
+                                    onClick = {
+
+
+                                    }
                                 )
                             }
                             BtnAddOrRemove(
@@ -442,20 +440,15 @@
 
     @Composable
     fun CocktailListItem(
-        cocktailImg: String? = null,
         cocktailName: String,
-        cocktailCategory: String? = null,
-        cocktailInstructions: String? = null,
-      // onClick: () -> Unit,
+        onClick: () -> Unit,
     ) {
 
         val maxLength = 20
 
         Text(
             modifier = Modifier.
-            clickable(onClick = {
-
-            } )
+            clickable(onClick = onClick )
             ,
             text = cocktailName.take(maxLength),
             fontSize = 17.sp,
@@ -473,7 +466,6 @@
             )
         )
     }
-
 
 
 

@@ -311,11 +311,11 @@
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            // Invoke CocktailListItem composable
+                            val cocktailName = cocktail.cocktailName
                             CocktailListItem(
-                                cocktailName = cocktail.cocktailName,
+                                cocktailName = cocktailName,
                               onClick = {
-                                    // Invoke CocktailCard composable
+                                  navController.navigate("CocktailCardScreen/${cocktailName}")
 
 
                                 }
@@ -406,15 +406,15 @@
                             val cocktailCategory = cocktail.cocktailCategory
                             val cocktailInstructions = cocktail.cocktailInstructions
 
-                                cocktail.cocktailName?.let {
-                                    CocktailListItem(
-                                        cocktailName = cocktail.cocktailName,
-                                        onClick = {
+                            cocktail.cocktailName?.let {
+                                CocktailListItem(
+                                    cocktailName = cocktail.cocktailName,
+                                    onClick = {
 
-                                            navController.navigate("CocktailCardScreen/${cocktailName}")
+                                        navController.navigate("CocktailCardScreen/${cocktailName}")
 
-                                        }
-                                    )
+                                    }
+                                )
                             }
                             BtnAddOrRemove(
                                 text,
@@ -478,153 +478,3 @@
         )
     }
 
-
-
-    @Composable
-    fun CocktailCard(
-        cocktailImg: String,
-        cocktailName: String,
-        cocktailCategory: String,
-        cocktailInstructions: String,
-        onDismissRequest: () -> Unit,
-       onConfirmation: () -> Unit,
-
-        ) {
-
-
-
-            Dialog(onDismissRequest = { onDismissRequest() }) {
-                // Draw a rectangle shape with rounded corners inside the dialog
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(375.dp)
-                        .padding(16.dp),
-                    shape = RoundedCornerShape(16.dp),
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        AsyncImage(
-                            model = cocktailImg,
-                            contentDescription = null,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .size(200.dp)
-                                .clip(shape = CircleShape)
-                        )
-                        Text(
-                            text = cocktailName
-                        )
-                        Text(
-                            text = cocktailCategory
-                        )
-                        Text(
-                            text = cocktailInstructions
-                        )
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center,
-                        ) {
-                            TextButton(
-                                onClick = { onDismissRequest() },
-                                modifier = Modifier.padding(8.dp),
-                            ) {
-                                Text("Back")
-                            }
-                            TextButton(
-                                onClick = { onConfirmation() },
-                                modifier = Modifier.padding(8.dp),
-                            ) {
-                                Text("Add Drink")
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-/*
-    // Cocktail modal
-    @Composable
-    fun CocktailCard(
-        viewModel: DrinksViewModel = viewModel(),
-        onDismissRequest: () -> Unit,
-        onConfirmation: () -> Unit,
-
-        ) {
-        val drinksObject by viewModel.drinksUiState
-
-        // Trigger fetch on initial composition
-        LaunchedEffect(true) {
-            viewModel.fetchRandomCocktails(1)
-        }
-
-        if (drinksObject.isNotEmpty()) {
-            val cocktailImg = drinksObject[0]?.drinks?.get(0)?.cocktailImg
-            val cocktailName = drinksObject[0]?.drinks?.get(0)?.cocktailName.toString()
-            val cocktailCategory = drinksObject[0]?.drinks?.get(0)?.cocktailCategory.toString()
-            val cocktailInstructions = drinksObject[0]?.drinks?.get(0)?.cocktailInstructions.toString()
-            Dialog(onDismissRequest = { onDismissRequest() }) {
-                // Draw a rectangle shape with rounded corners inside the dialog
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(375.dp)
-                        .padding(16.dp),
-                    shape = RoundedCornerShape(16.dp),
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        AsyncImage(
-                            model = cocktailImg,
-                            contentDescription = null,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .size(200.dp)
-                                .clip(shape = CircleShape)
-                        )
-                        Text(
-                            text = cocktailName
-                        )
-                        Text(
-                            text = cocktailCategory
-                        )
-                        Text(
-                            text = cocktailInstructions
-                        )
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center,
-                        ) {
-                            TextButton(
-                                onClick = { onDismissRequest() },
-                                modifier = Modifier.padding(8.dp),
-                            ) {
-                                Text("Back")
-                            }
-                            TextButton(
-                                onClick = { onConfirmation() },
-                                modifier = Modifier.padding(8.dp),
-                            ) {
-                                Text("Add Drink")
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            Text(text = "Loading...")
-        }
-    }
-
-    */

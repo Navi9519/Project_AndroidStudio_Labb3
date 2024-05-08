@@ -15,6 +15,7 @@ val MidnightBlue = Color(0xA107328B)
 val GoldColor = Color(0xFFFFD700)
 val ChampagneGoldColor = Color(0xFFE6B8A2)
 val SlateGrayColor = Color(0xFF708090)
+val OliveGreen = Color(0xFF607E2C)
 
 
 

@@ -80,7 +80,6 @@ fun MyApp(
             val cocktailName = backStackEntry.arguments?.getString("cocktailName")
             CocktailCardScreen(
                 navController,
-                userViewModel,
                 userRepository,
                 cocktailName = cocktailName
             )

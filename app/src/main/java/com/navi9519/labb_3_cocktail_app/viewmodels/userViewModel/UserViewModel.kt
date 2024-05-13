@@ -16,6 +16,7 @@
 
         class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
+
             var username = mutableStateOf("")
             var userId = mutableLongStateOf(0)
 
@@ -45,7 +46,7 @@
             fun register(username: String, onRegisterResult: (Boolean) -> Unit) {
                 userRepository.findExistingUser(username)
                     .onEach { user ->
-                        val usernamesIsRegistered = user != null
+                        val usernamesIsRegistered = user?.name == username
                         onRegisterResult(usernamesIsRegistered)
                     }
                     .launchIn(viewModelScope)

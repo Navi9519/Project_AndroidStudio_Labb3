@@ -291,7 +291,9 @@
         // Trigger fetch on initial composition
         LaunchedEffect(true) {
             viewModel.fetchRandomCocktails(10)
+
         }
+
 
         if (drinksList.isNotEmpty()) {
             LazyColumn(
@@ -304,6 +306,7 @@
             ) {
                 items(drinksList) { drink ->
                     drink?.drinks?.forEach { cocktail ->
+
                         Row(
                             modifier = Modifier
                                 .padding(horizontal = 10.dp)

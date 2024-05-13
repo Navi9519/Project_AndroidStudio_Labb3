@@ -14,6 +14,7 @@
     import androidx.compose.runtime.LaunchedEffect
     import androidx.compose.runtime.mutableStateOf
     import androidx.compose.runtime.remember
+    import androidx.compose.runtime.saveable.rememberSaveable
     import androidx.compose.ui.Alignment
     import androidx.compose.ui.Modifier
     import androidx.compose.ui.geometry.Offset
@@ -49,8 +50,10 @@
 
     ) {
 
-        val usernameState = remember { mutableStateOf(TextFieldValue("")) }
-        val passwordState = remember { mutableStateOf(TextFieldValue("")) }
+
+
+        val usernameState = rememberSaveable(stateSaver = TextFieldValue.Saver){ mutableStateOf(TextFieldValue("")) }
+        val passwordState = rememberSaveable(stateSaver = TextFieldValue.Saver){ mutableStateOf(TextFieldValue("")) }
 
 
 

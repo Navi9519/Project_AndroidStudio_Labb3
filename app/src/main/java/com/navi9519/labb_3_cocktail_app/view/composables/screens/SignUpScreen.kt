@@ -14,6 +14,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -51,9 +52,9 @@ fun SignUpScreen(
     val context = LocalContext.current
 
 // Mutable textField states for username, email, and password
-    val emailState = remember { mutableStateOf(TextFieldValue("")) }
-    val usernameState = remember { mutableStateOf(TextFieldValue("")) }
-    val passwordState = remember { mutableStateOf(TextFieldValue("")) }
+    val emailState = rememberSaveable(stateSaver = TextFieldValue.Saver) { mutableStateOf(TextFieldValue("")) }
+    val usernameState = rememberSaveable(stateSaver = TextFieldValue.Saver) { mutableStateOf(TextFieldValue("")) }
+    val passwordState = rememberSaveable(stateSaver = TextFieldValue.Saver) { mutableStateOf(TextFieldValue("")) }
 
     // Function to add user to the database and print all users
 
@@ -91,28 +92,13 @@ fun SignUpScreen(
                     }
 
                 } else {
-
+                    println(username)
                     Toast.makeText(context, "username ''${username}'' already exists",
                         Toast.LENGTH_LONG).show()
 
                 }
 
-
             }
-                // Print all users
-                userRepository.performDatabaseOperation(Dispatchers.Main) {
-                    userRepository.findAllUsers().collect { users ->
-                        println("All users:")
-                        users.forEach {
-                            println("${it.email} - ${it.name} - ${it.password} ${it.userId} ")
-                        }
-                        userRepository.findAllUsers().collect {
-                            println(it)
-                        }
-                    }
-
-
-                }
 
 
             } else {
@@ -141,7 +127,7 @@ fun SignUpScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 40.dp,),
+                    .padding(top = 40.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -200,9 +186,9 @@ fun SignUpScreen(
 
                 }
 
-                Row() {
+                Row {
                     AccountOrNot(
-                        text = "Allready have a account? ",
+                        text = "Already have a account? ",
                         account = " Login",
                         onClick = {
                             navController.navigate("LoginScreen")

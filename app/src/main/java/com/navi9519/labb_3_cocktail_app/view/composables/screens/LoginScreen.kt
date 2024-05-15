@@ -121,7 +121,7 @@
                     userViewModel.login(username, password) { isUserLoggedIn ->
                         if (isUserLoggedIn) {
 
-                            userViewModel.username.value = username         // TODO - From TEXT_EDIT
+                            userViewModel.username.value = username
                             userViewModel.setUserIDbyUsername(username)     //
 
                             navController.navigate("FindCocktailScreen")

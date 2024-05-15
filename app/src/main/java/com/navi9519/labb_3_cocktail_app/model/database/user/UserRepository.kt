@@ -22,7 +22,7 @@
             myDatabase.userDao().deleteUser(user)
         }
 
-            fun findAllUsers(): Flow<List<User>> {
+            fun findAllUsers(   ): Flow<List<User>> {
                 return myDatabase.userDao().findAllUsers()
             }
 

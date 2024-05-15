@@ -29,7 +29,6 @@
                     .launchIn(viewModelScope)
             }
 
-            // TODO - Sets users ID on ViewModel (finds id through username)
             fun setUserIDbyUsername (username: String) {
                 viewModelScope.launch {
                     userRepository.findExistingUser(username).collect {     // Database Query

@@ -44,7 +44,7 @@ fun UserCocktailScreen(
 ) {
 
     val viewModel: DrinksViewModel = viewModel()
-    
+
     val username = userViewModel.username.value
 
 

@@ -57,9 +57,9 @@ fun FindCocktailScreen(
 ) {
 
     val viewModel: DrinksViewModel = viewModel()
-    val username  = rememberSaveable() {
-        userViewModel.username.value
-    }
+        val username  = rememberSaveable() {
+            userViewModel.username.value
+        }
     val userId = userViewModel.userId.longValue
 
     Box(modifier = Modifier.fillMaxSize()) {
